@@ -1,4 +1,4 @@
-# generator-systemic [![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Dependency Status][daviddm-image]][daviddm-url]
+# generator-systemic 
 > A generator for a systemic microservice
 
 ## Installation
