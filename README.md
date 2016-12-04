@@ -26,11 +26,3 @@ yo systemic
 ## License
 
 ISC © [Guidesmiths Ltd]()
-
-
-[npm-image]: https://badge.fury.io/js/generator-systemic.svg
-[npm-url]: https://npmjs.org/package/generator-systemic
-[travis-image]: https://travis-ci.org/GuideSmiths Ltd/generator-systemic.svg?branch=master
-[travis-url]: https://travis-ci.org/GuideSmiths Ltd/generator-systemic
-[daviddm-image]: https://david-dm.org/GuideSmiths Ltd/generator-systemic.svg?theme=shields.io
-[daviddm-url]: https://david-dm.org/GuideSmiths Ltd/generator-systemic
