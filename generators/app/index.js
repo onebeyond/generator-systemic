@@ -14,21 +14,28 @@ module.exports = yeoman.Base.extend({
       type    : 'input',
       name    : 'name',
       message : 'Your service name',
-      default : this.appname // Default to current folder name
+      default : this.appname
+    },
+    {
+      type    : 'input',
+      name    : 'description',
+      message : 'A brief description',
+      default : ''
     },
     {
       type    : 'confirm',
       name    : 'cool',
       message : 'Would you like to enable the Cool feature?'
-    }]).then(function (answers) {
-      console.log('answers: ', answers)
-      this.log('app name', answers.name);
-      this.log('cool feature', answers.cool);
+    }]).then(function (_answers) {
+      this.props = _answers;
     }.bind(this));
   },
   writing: {
     config: function() {
       this._copyRootFiles();
+    },
+    app: function() {
+
     }
   },
   install: function() {
