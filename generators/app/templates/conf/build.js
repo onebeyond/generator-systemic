@@ -18,11 +18,13 @@ module.exports = {
         url: 'redis://redis/2'
     },
 <% } %>
+<% if (setup.indexOf('postgres') > -1) { %>
     postgres: {
         host: 'postgres',
         database: 'postgres',
         user: 'postgres'
     },
+<% } %>
 <% if (setup.indexOf('basics') > -1) { %>
     logger: {
         transport: 'console'

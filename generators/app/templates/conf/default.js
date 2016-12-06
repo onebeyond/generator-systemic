@@ -35,7 +35,11 @@ module.exports = {
 
     },
 <% } %>
-    postgres: {},
+<% if (setup.indexOf('postgres') > -1) { %>
+    postgres: {
+
+    },
+<% } %>
 <% if (setup.indexOf('basics') > -1) { %>
     service: {
         reload: {
