@@ -1,4 +1,5 @@
 module.exports = {
+<% if (setup.indexOf('express') > -1) { %>
     server: {
         host: '0.0.0.0',
         port: 3000,
@@ -6,6 +7,7 @@ module.exports = {
             delay: '5s'
         }
     },
+<% } %>
     mongodb: {
         options: {
             db: {
