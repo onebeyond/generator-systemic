@@ -40,6 +40,7 @@ module.exports = yeoman.Base.extend({
   writing: {
     config: function() {
       this._copyFiles('conf', 'conf');
+      this._copyFiles('bin', 'bin');
       this._copyFiles('root', '.');
     },
     app: function() {
