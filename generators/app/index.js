@@ -8,6 +8,15 @@ const path = require('path');
 
 const templatesFolder = path.join(__dirname, 'templates');
 
+/*
+
+TODO start with basic,
+add files into 'setup' only if they are really needed from config,
+that config should be copied into setup/index.js
+config files fragments will be copied depending on the chosen options
+
+*/
+
 module.exports = yeoman.Base.extend({
   prompting: function() {
     return this.prompt([{
@@ -23,9 +32,16 @@ module.exports = yeoman.Base.extend({
       default : ''
     },
     {
-      type    : 'confirm',
-      name    : 'cool',
-      message : 'Would you like to enable the Cool feature?'
+      type    : 'checkbox',
+      name    : 'setup',
+      message : 'Choose your components',
+      choices: [
+        { name: 'basics', checked: true, disabled: "mandatory" },
+        { name: 'express'},
+        { name: 'mongo'},
+        { name: 'redis'},
+        { name: 'postgres'}
+      ]
     }]).then(function (_answers) {
       this.props = _answers;
     }.bind(this));
@@ -42,10 +58,10 @@ module.exports = yeoman.Base.extend({
     this.installDependencies();
   },
   _copyRootFiles: function() {
-    const rootFiles = fs.readdirSync(path.join(templatesFolder));
+    const rootFiles = fs.readdirSync(path.join(templatesFolder, 'root'));
     const self = this;
     _.forEach(rootFiles, function(file) {
-      self.fs.copyTpl( self.templatePath(file), self.destinationPath(file.replace(/^_/, '')), self.props );
+      self.fs.copyTpl( self.templatePath('./root/' + file), self.destinationPath(file.replace(/^_/, '')), self.props );
     });
   }
 });
