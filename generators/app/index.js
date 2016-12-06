@@ -39,8 +39,8 @@ module.exports = yeoman.Base.extend({
   },
   writing: {
     config: function() {
-      this._copyConfigFiles();
-      this._copyRootFiles();
+      this._copyFiles('conf', 'conf');
+      this._copyFiles('root', '.');
     },
     app: function() {
 
@@ -49,20 +49,11 @@ module.exports = yeoman.Base.extend({
   install: function() {
     this.installDependencies();
   },
-  _copyRootFiles: function() {
-    const prefix = 'root';
-    const rootFiles = fs.readdirSync(path.join(templatesFolder, prefix));
-    const self = this;
-    _.forEach(rootFiles, function(file) {
-      self.fs.copyTpl( self.templatePath(`./${prefix}/${file}`), self.destinationPath(file.replace(/^_/, '')), self.props );
-    });
-  },
-  _copyConfigFiles: function() {
-    const prefix = 'conf';
-    const configFiles = fs.readdirSync(path.join(templatesFolder, prefix));
+  _copyFiles: function(from, to) {
+    const configFiles = fs.readdirSync(path.join(templatesFolder, from));
     const self = this;
     _.forEach(configFiles, function(file) {
-      self.fs.copyTpl( self.templatePath(`./${prefix}/${file}`), self.destinationPath(prefix + '/' + file.replace(/^_/, '')), self.props );
+      self.fs.copyTpl( self.templatePath(`./${from}/${file}`), self.destinationPath(to + '/' + file.replace(/^_/, '')), self.props );
     });
   }
 });
