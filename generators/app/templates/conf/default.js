@@ -30,10 +30,12 @@ module.exports = {
         }
     },
 <% } %>
+<% if (setup.indexOf('redis') > -1) { %>
     redis: {
+
     },
-    postgres: {
-    },
+<% } %>
+    postgres: {},
 <% if (setup.indexOf('basics') > -1) { %>
     service: {
         reload: {

@@ -13,9 +13,11 @@ module.exports = {
         }
     },
 <% } %>
+<% if (setup.indexOf('redis') > -1) { %>
     redis: {
         url: 'redis://localhost:6379/1'
     },
+<% } %>
     postgres: {
         database: 'postgres',
         user: 'postgres'
