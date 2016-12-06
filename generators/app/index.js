@@ -41,6 +41,7 @@ module.exports = yeoman.Base.extend({
     config: function() {
       this._copyFiles('conf', 'conf');
       this._copyFiles('bin', 'bin');
+      this._copyFiles('docker', 'docker');
       this._copyFiles('root', '.');
     },
     app: function() {
