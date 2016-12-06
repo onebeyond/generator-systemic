@@ -1,4 +1,5 @@
 module.exports = {
+<% if (setup.indexOf('mongo') > -1) { %>
     mongodb: {
         url: 'mongodb://127.0.0.1/example',
         options: {
@@ -11,6 +12,7 @@ module.exports = {
             }
         }
     },
+<% } %>
     redis: {
         url: 'redis://localhost:6379/1'
     },

@@ -8,6 +8,7 @@ module.exports = {
         }
     },
 <% } %>
+<% if (setup.indexOf('mongo') > -1) { %>
     mongodb: {
         options: {
             db: {
@@ -28,6 +29,7 @@ module.exports = {
             }
         }
     },
+<% } %>
     redis: {
     },
     postgres: {
