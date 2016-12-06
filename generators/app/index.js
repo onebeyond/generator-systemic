@@ -8,15 +8,6 @@ const path = require('path');
 
 const templatesFolder = path.join(__dirname, 'templates');
 
-/*
-
-TODO start with basic,
-add files into 'setup' only if they are really needed from config,
-that config should be copied into setup/index.js
-config files fragments will be copied depending on the chosen options
-
-*/
-
 module.exports = yeoman.Base.extend({
   prompting: function() {
     return this.prompt([{
@@ -36,7 +27,6 @@ module.exports = yeoman.Base.extend({
       name    : 'setup',
       message : 'Choose your components',
       choices: [
-        { name: 'basics', checked: true, disabled: "mandatory" },
         { name: 'express'},
         { name: 'mongo'},
         { name: 'redis'},
@@ -44,6 +34,7 @@ module.exports = yeoman.Base.extend({
       ]
     }]).then(function (_answers) {
       this.props = _answers;
+      this.props.setup.push('basics');
     }.bind(this));
   },
   writing: {

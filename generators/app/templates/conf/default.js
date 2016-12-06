@@ -1,9 +1,4 @@
 module.exports = {
-    service: {
-        reload: {
-            window: '60s'
-        }
-    },
     server: {
         host: '0.0.0.0',
         port: 3000,
@@ -35,8 +30,14 @@ module.exports = {
     },
     postgres: {
     },
+<% if (setup.indexOf('basics') > -1) { %>
+    service: {
+        reload: {
+            window: '60s'
+        }
+    },
     logger: {
-        transport: 'json',
+        transport: 'bunyan',
         include: [
             'tracer',
             'timestamp',
@@ -67,4 +68,5 @@ module.exports = {
             'devDependencies'
         ]
     }
+<% } %>
 }

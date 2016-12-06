@@ -1,7 +1,4 @@
 module.exports = {
-    logger: {
-        transport: 'console'
-    },
     mongodb: {
         url: 'mongodb://127.0.0.1/example',
         options: {
@@ -20,5 +17,10 @@ module.exports = {
     postgres: {
         database: 'postgres',
         user: 'postgres'
+    },
+<% if (setup.indexOf('basics') > -1) { %>
+    logger: {
+        transport: 'console'
     }
+<% } %>
 }
