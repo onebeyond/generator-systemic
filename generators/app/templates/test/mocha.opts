@@ -1,0 +1,3 @@
+--recursive
+--require ./test/env.js
+--timeout 5000
