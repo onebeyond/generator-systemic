@@ -6,15 +6,15 @@ services:
     build: ..
     image: quay.io/guidesmiths/svc-example:latest
     links:
-<% if (setup.indexOf('mongo') > -1) { %>      - mongo:mongo<% } %>
-<% if (setup.indexOf('redis') > -1) { %>      - redis:redis<% } %>
-<% if (setup.indexOf('postgres') > -1) { %>      - postgres:postgres<% } %>
+<% if (components.indexOf('mongo') > -1) { %>      - mongo:mongo<% } %>
+<% if (components.indexOf('redis') > -1) { %>      - redis:redis<% } %>
+<% if (components.indexOf('postgres') > -1) { %>      - postgres:postgres<% } %>
 
-<% if (setup.indexOf('mongo') > -1) { %>  mongo:
+<% if (components.indexOf('mongo') > -1) { %>  mongo:
     image: mongo<% } %>
 
-<% if (setup.indexOf('redis') > -1) { %>  redis:
+<% if (components.indexOf('redis') > -1) { %>  redis:
     image: redis<% } %>
 
-<% if (setup.indexOf('postgres') > -1) { %>  postgres:
+<% if (components.indexOf('postgres') > -1) { %>  postgres:
     image: postgres<% } %>

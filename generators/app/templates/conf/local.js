@@ -1,5 +1,5 @@
 module.exports = {
-<% if (setup.indexOf('mongo') > -1) { %>
+<% if (components.indexOf('mongo') > -1) { %>
     mongodb: {
         url: 'mongodb://127.0.0.1/example',
         options: {
@@ -13,18 +13,18 @@ module.exports = {
         }
     },
 <% } %>
-<% if (setup.indexOf('redis') > -1) { %>
+<% if (components.indexOf('redis') > -1) { %>
     redis: {
         url: 'redis://localhost:6379/1'
     },
 <% } %>
-<% if (setup.indexOf('postgres') > -1) { %>
+<% if (components.indexOf('postgres') > -1) { %>
     postgres: {
         database: 'postgres',
         user: 'postgres'
     },
 <% } %>
-<% if (setup.indexOf('basics') > -1) { %>
+<% if (components.indexOf('basics') > -1) { %>
     logger: {
         transport: 'console'
     }

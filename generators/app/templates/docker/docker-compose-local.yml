@@ -2,19 +2,19 @@ version: '2'
 
 services:
 
-<% if (setup.indexOf('mongo') > -1) { %>  mongo:
+<% if (components.indexOf('mongo') > -1) { %>  mongo:
     image: mongo
     container_name: mongo
     ports:
      - '27017:27017'<% } %>
 
-<% if (setup.indexOf('redis') > -1) { %>  redis:
+<% if (components.indexOf('redis') > -1) { %>  redis:
     image: redis
     container_name: redis
     ports:
      - '6379:6379'<% } %>
 
-<% if (setup.indexOf('postgres') > -1) { %>  postgres:
+<% if (components.indexOf('postgres') > -1) { %>  postgres:
     image: postgres
     container_name: postgres
     ports:

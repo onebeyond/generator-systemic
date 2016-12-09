@@ -1,5 +1,5 @@
 module.exports = {
-<% if (setup.indexOf('express') > -1) { %>
+<% if (components.indexOf('express') > -1) { %>
     server: {
         host: '0.0.0.0',
         port: 3000,
@@ -8,7 +8,7 @@ module.exports = {
         }
     },
 <% } %>
-<% if (setup.indexOf('mongo') > -1) { %>
+<% if (components.indexOf('mongo') > -1) { %>
     mongodb: {
         options: {
             db: {
@@ -30,17 +30,17 @@ module.exports = {
         }
     },
 <% } %>
-<% if (setup.indexOf('redis') > -1) { %>
+<% if (components.indexOf('redis') > -1) { %>
     redis: {
 
     },
 <% } %>
-<% if (setup.indexOf('postgres') > -1) { %>
+<% if (components.indexOf('postgres') > -1) { %>
     postgres: {
 
     },
 <% } %>
-<% if (setup.indexOf('basics') > -1) { %>
+<% if (components.indexOf('basics') > -1) { %>
     service: {
         reload: {
             window: '60s'

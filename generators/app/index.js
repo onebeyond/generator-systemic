@@ -24,7 +24,7 @@ module.exports = yeoman.Base.extend({
     },
     {
       type    : 'checkbox',
-      name    : 'setup',
+      name    : 'components',
       message : 'Choose your components',
       choices: [
         { name: 'logging'},
@@ -35,8 +35,8 @@ module.exports = yeoman.Base.extend({
       ]
     }]).then(function (_answers) {
       this.props = _answers;
-      this.props.setup.push('basics');
-      if (_.includes(this.props.setup, 'express')) this.props.setup.push('routes');
+      this.props.components.push('basics');
+      if (_.includes(this.props.components, 'express')) this.props.components.push('routes');
     }.bind(this));
   },
   writing: {
@@ -63,7 +63,7 @@ module.exports = yeoman.Base.extend({
   _copyAppFiles: function() {
     const self = this;
     this.fs.copy(this.templatePath('./lib/system.js'), this.destinationPath('./lib/system.js'));
-    _.forEach(this.props.setup, function(component) {
+    _.forEach(this.props.components, function(component) {
       self.fs.copy(self.templatePath(`./lib/components/${component}/*`), self.destinationPath(`./lib/components/${component}/`));
     });
   }
