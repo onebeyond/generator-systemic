@@ -1,6 +1,5 @@
 'use strict';
 const yeoman = require('yeoman-generator');
-const chalk = require('chalk');
 const _ = require('lodash');
 const yosay = require('yosay');
 const fs = require('fs');
@@ -54,9 +53,9 @@ module.exports = yeoman.Base.extend({
     this.installDependencies();
   },
   end: function() {
-    this.log(`\n\nYour service ${this.props.name} has been created.
-              npm run docker - to initialise the required docker containers
-              npm run start - to start your systemic service`);
+    this.log(yosay(`\n\nYour service ${this.props.name} has been created.
+              npm run docker - initialise the required docker containers
+              npm run start - start your systemic service`));
   },
   _copyFiles: function(from, to) {
     const configFiles = fs.readdirSync(path.join(templatesFolder, from));
@@ -74,15 +73,3 @@ module.exports = yeoman.Base.extend({
     });
   }
 });
-
-// The available priorities are (in running order):
-
-// initializing - Your initialization methods (checking current project state, getting configs, etc)
-// prompting - Where you prompt users for options (where you'd call this.prompt())
-// configuring - Saving configurations and configure the project (creating .editorconfig files and other metadata files)
-// default - If the method name doesn't match a priority, it will be pushed to this group.
-// writing - Where you write the generator specific files (routes, controllers, etc)
-// conflicts - Where conflicts are handled (used internally)
-// install - Where installation are run (npm, bower)
-// end - Called last, cleanup, say good bye, etc
-

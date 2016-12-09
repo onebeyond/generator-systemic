@@ -1,5 +1,4 @@
-const merge = require('lodash.merge')
-const get = require('lodash.get')
+const _ = require('lodash')
 
 module.exports = function(options = {}) {
 
@@ -7,8 +6,8 @@ module.exports = function(options = {}) {
     const handlers = prepper.handlers
 
     function start({ config, transports, pkg = { name: 'unknown' } }, cb) {
-        const transport = options.transport !== undefined ? options.transport : get(transports, config.transport)
-        config = merge({ include: [], exclude: [] }, config)
+        const transport = options.transport !== undefined ? options.transport : _.get(transports, config.transport)
+        config = _.merge({ include: [], exclude: [] }, config)
 
         const logger = new prepper.Logger({ handlers: [
             new handlers.Merge({ package: pkg }),

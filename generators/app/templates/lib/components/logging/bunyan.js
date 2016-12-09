@@ -1,5 +1,5 @@
 const bunyan = require('bunyan')
-const R = require('ramda')
+const _ = require('lodash')
 
 module.exports = function() {
 
@@ -11,7 +11,7 @@ module.exports = function() {
     }
 
     function onMessage(event) {
-        log[event.level](R.omit(['level', 'message'], event), event.message)
+        log[event.level](_.omit(event, ['level', 'message']), event.message)
     }
 
     return {

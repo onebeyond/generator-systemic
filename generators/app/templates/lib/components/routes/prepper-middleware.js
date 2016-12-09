@@ -1,4 +1,4 @@
-const pick = require('lodash.pick')
+const _ = require('lodash')
 const onHeaders = require('on-headers')
 
 module.exports = function(options = {}) {
@@ -11,7 +11,7 @@ module.exports = function(options = {}) {
 
             const logger = req.app.locals.logger.child({ handlers: [
                 new handlers.Tracer(),
-                new handlers.Merge(pick(req, ['url', 'method', 'headers', 'params']), { key: 'request' })
+                new handlers.Merge(_.pick(req, ['url', 'method', 'headers', 'params']), { key: 'request' })
             ]})
 
             onHeaders(res, () => {
