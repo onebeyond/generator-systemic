@@ -27,6 +27,7 @@ module.exports = yeoman.Base.extend({
       name    : 'setup',
       message : 'Choose your components',
       choices: [
+        { name: 'logging'},
         { name: 'express'},
         { name: 'mongo'},
         { name: 'redis'},
@@ -35,6 +36,7 @@ module.exports = yeoman.Base.extend({
     }]).then(function (_answers) {
       this.props = _answers;
       this.props.setup.push('basics');
+      if (_.includes(this.props.setup, 'express')) this.props.setup.push('routes');
     }.bind(this));
   },
   writing: {
@@ -45,7 +47,7 @@ module.exports = yeoman.Base.extend({
       this._copyFiles('root', '.');
     },
     app: function() {
-
+      this._copyAppFiles();
     }
   },
   install: function() {
@@ -55,7 +57,14 @@ module.exports = yeoman.Base.extend({
     const configFiles = fs.readdirSync(path.join(templatesFolder, from));
     const self = this;
     _.forEach(configFiles, function(file) {
-      self.fs.copyTpl( self.templatePath(`./${from}/${file}`), self.destinationPath(to + '/' + file.replace(/^_/, '')), self.props );
+      self.fs.copyTpl(self.templatePath(`./${from}/${file}`), self.destinationPath(to + '/' + file.replace(/^_/, '')), self.props);
+    });
+  },
+  _copyAppFiles: function() {
+    const self = this;
+    this.fs.copy(this.templatePath('./lib/system.js'), this.destinationPath('./lib/system.js'));
+    _.forEach(this.props.setup, function(component) {
+      self.fs.copy(self.templatePath(`./lib/components/${component}/*`), self.destinationPath(`./lib/components/${component}/`));
     });
   }
 });
