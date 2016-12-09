@@ -35,7 +35,6 @@ module.exports = yeoman.Base.extend({
     }]).then(function (_answers) {
       this.props = _answers;
       this.props.components.push('basics');
-      if (_.includes(this.props.components, 'express')) this.props.components.push('routes');
     }.bind(this));
   },
   writing: {
