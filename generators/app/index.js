@@ -53,6 +53,11 @@ module.exports = yeoman.Base.extend({
   install: function() {
     this.installDependencies();
   },
+  end: function() {
+    this.log(`\n\nYour service ${this.props.name} has been created.
+              npm run docker - to initialise the required docker containers
+              npm run start - to start your systemic service`);
+  },
   _copyFiles: function(from, to) {
     const configFiles = fs.readdirSync(path.join(templatesFolder, from));
     const self = this;
