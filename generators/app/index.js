@@ -26,7 +26,6 @@ module.exports = yeoman.Base.extend({
       name    : 'components',
       message : 'Choose your components',
       choices: [
-        { name: 'logging'},
         { name: 'express'},
         { name: 'mongo'},
         { name: 'redis'},
@@ -34,7 +33,7 @@ module.exports = yeoman.Base.extend({
       ]
     }]).then(function (_answers) {
       this.props = _answers;
-      this.props.components.push('basics');
+      this.props.components.push('basics', 'config', 'logging');
     }.bind(this));
   },
   writing: {
