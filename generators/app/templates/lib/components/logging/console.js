@@ -21,11 +21,10 @@ module.exports = function() {
     }
 
     function onMessage(event) {
-        const details = _.pluck([], event)
         const data = _.merge({}, event, {
             displayTracer: _.has(event, 'tracer') ? event.tracer.substr(0, 6) : '------',
             displayLevel: event.level.toUpperCase(),
-            details: Object.keys(details).length ? `\n ${JSON.stringify(details, null, 2)}` : ''
+            details: Object.keys(event).length ? `\n ${JSON.stringify(event, null, 2)}` : ''
         })
         const colour = colours[event.level] || colours.default
         const log = console[event.level] || console.info // eslint-disable-line no-console

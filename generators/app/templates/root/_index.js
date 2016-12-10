@@ -8,6 +8,7 @@ process.env.SERVICE_ENV = process.env.SERVICE_ENV || 'local'
 
 runner(system, { logger: emergencyLogger }).start((err, { logger }) => {
     if (err) die('Error starting system', err)
+    logger.info('Your systemic service has started')
     process.on('confabulous_reload_error', err => logger.error('Error reloading config', err))
 })
 
