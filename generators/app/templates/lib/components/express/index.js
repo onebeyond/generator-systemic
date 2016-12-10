@@ -5,5 +5,5 @@ const server = require('systemic-express').server
 
 module.exports = new System()
     .add('app', app()).dependsOn('config', 'logger')
-    .add('middleware.default', defaultMiddleware()).dependsOn('logger', 'app', 'routes')
+    .add('middleware.default', defaultMiddleware()).dependsOn('logger', 'app')
     .add('server', server()).dependsOn('config', 'app')
