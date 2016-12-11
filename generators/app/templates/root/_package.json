@@ -8,7 +8,7 @@
     "test": "mocha test",
     "lint": "eslint .",
     "qa": "npm run lint && npm run test",
-    "docker": "bash -c '(docker network inspect local 2>&1 > /dev/null || docker network create local) && docker-compose --file docker/docker-compose-local.yml pull && docker-compose --file docker/docker-compose-local.yml up -d --force-recreate'",
+    <% if (dockerDependencies) { %>    "docker": "bash -c '(docker network inspect local 2>&1 > /dev/null || docker network create local) && docker-compose --file docker/docker-compose-local.yml pull && docker-compose --file docker/docker-compose-local.yml up -d --force-recreate'",<% } %>
     "precommit": "npm run qa"
   },
   "devDependencies": {

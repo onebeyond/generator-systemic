@@ -34,14 +34,15 @@ module.exports = yeoman.Base.extend({
     }]).then(function (_answers) {
       this.props = _answers;
       this.props.components.push('basics', 'config', 'logging');
+      this.props.dockerDependencies = _.size(_.intersection([ 'postgres', 'redis', 'mongo' ], this.props.components)) > 0;
     }.bind(this));
   },
   writing: {
     config: function() {
       this._copyFiles('conf', 'conf');
       this._copyFiles('bin', 'bin');
-      this._copyFiles('docker', 'docker');
       this._copyFiles('root', '.');
+      this._copyDockerFiles();
     },
     app: function() {
       this._copyAppFiles();
@@ -51,9 +52,15 @@ module.exports = yeoman.Base.extend({
     this.installDependencies();
   },
   end: function() {
-    this.log(yosay(`\n\nYour service ${this.props.name} has been created.
-              npm run docker - initialise the required docker containers
-              npm run start - start your systemic service`));
+    var outputMsg = `\n\nYour service ${this.props.name} has been created.\nnpm run start - start your systemic service`;
+    if (this.props.dockerDependencies) outputMsg += '\nnpm run docker - initialise the required docker containers';
+    this.log(yosay(outputMsg));
+  },
+  _copyDockerFiles: function() {
+    this.fs.copyTpl(this.templatePath('./docker/docker-compose-build.yml'), this.destinationPath('./docker/docker-compose-build.yml'), this.props);
+    if (this.props.dockerDependencies) {
+      this.fs.copyTpl(this.templatePath('./docker/docker-compose-local.yml'), this.destinationPath('./docker/docker-compose-local.yml'), this.props);
+    }
   },
   _copyFiles: function(from, to) {
     const configFiles = fs.readdirSync(path.join(templatesFolder, from));
