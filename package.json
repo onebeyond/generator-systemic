@@ -25,21 +25,21 @@
     "yosay": "^1.0.0"
   },
   "devDependencies": {
-    "yeoman-test": "^1.0.0",
-    "yeoman-assert": "^2.0.0",
     "eslint": "^3.1.1",
-    "eslint-config-xo-space": "^0.15.0",
+    "eslint-config-imperative-es6": "^1.0.0",
     "gulp": "^3.9.0",
     "gulp-eslint": "^3.0.1",
     "gulp-exclude-gitignore": "^1.0.0",
-    "gulp-line-ending-corrector": "^1.0.1",
     "gulp-istanbul": "^1.0.0",
+    "gulp-line-ending-corrector": "^1.0.1",
     "gulp-mocha": "^3.0.1",
+    "gulp-nsp": "^2.1.0",
     "gulp-plumber": "^1.0.0",
-    "gulp-nsp": "^2.1.0"
+    "yeoman-assert": "^2.0.0",
+    "yeoman-test": "^1.0.0"
   },
   "eslintConfig": {
-    "extends": "xo-space",
+    "extends": "imperative-es6",
     "env": {
       "mocha": true
     }

@@ -1,4 +1,4 @@
-'use strict';
+
 var path = require('path');
 var gulp = require('gulp');
 var eslint = require('gulp-eslint');
@@ -21,7 +21,7 @@ gulp.task('nsp', function (cb) {
 });
 
 gulp.task('pre-test', function () {
-  return gulp.src('generators/**/*.js')
+  return gulp.src(['generators/**/*.js', '!generators/app/templates/conf/*.js'])
     .pipe(excludeGitignore())
     .pipe(istanbul({
       includeUntested: true

@@ -1,4 +1,4 @@
-'use strict';
+
 const yeoman = require('yeoman-generator');
 const _ = require('lodash');
 const yosay = require('yosay');
@@ -66,7 +66,7 @@ module.exports = yeoman.Base.extend({
     const configFiles = fs.readdirSync(path.join(templatesFolder, from));
     const self = this;
     _.forEach(configFiles, function(file) {
-      self.fs.copyTpl(self.templatePath(`./${from}/${file}`), self.destinationPath(to + '/' + file.replace(/^_/, '')), self.props);
+      self.fs.copyTpl(self.templatePath(`./${from}/${file}`), self.destinationPath(`${to}/${file.replace(/^_/, '')}`), self.props);
     });
   },
   _copyAppFiles: function() {
