@@ -74,6 +74,7 @@ module.exports = yeoman.Base.extend({
     _.forEach([ './lib/system.js', './lib/init.js' ], function(appFile) {
       self.fs.copy(self.templatePath(appFile), self.destinationPath(appFile));
     });
+    this.fs.copy(this.templatePath('./test/.eslintrc'), this.destinationPath('./test/.eslintrc'));
     this.fs.copy(this.templatePath('./test/*'), this.destinationPath('./test/'));
     _.forEach(this.props.components, function(component) {
       self.fs.copy(self.templatePath(`./lib/components/${component}/*`), self.destinationPath(`./lib/components/${component}/`));

@@ -9,9 +9,13 @@
     "lint": "eslint .",
     "qa": "npm run lint && npm run test",
     <% if (dockerDependencies) { %>    "docker": "bash -c '(docker network inspect local 2>&1 > /dev/null || docker network create local) && docker-compose --file docker/docker-compose-local.yml pull && docker-compose --file docker/docker-compose-local.yml up -d --force-recreate'",<% } %>
-    "precommit": "npm run qa"
+    "precommit": "npm run qa",
+    "postinstall": "node_modules/.bin/eslint . --fix"
   },
   "devDependencies": {
+    "eslint": "^3.0.1",
+    "eslint-config-imperative-es6": "^1.0.0",
+    "eslint-plugin-mocha": "^4.0.0",
     "chai": "^3.5.0",
     "husky": "^0.11.4",
     "make-manifest": "^0.1.2",
