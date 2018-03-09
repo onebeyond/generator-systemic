@@ -24,9 +24,9 @@ module.exports = {
         user: 'postgres'
     },
 <% } %>
-<% if (components.indexOf('basics') > -1) { %>
+<% if (components.indexOf('app') > -1) { %>
     logger: {
-        transport: 'console'
+        transport: null
     }
 <% } %>
-}
+};

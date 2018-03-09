@@ -1,1 +1,2 @@
-FROM quay.io/guidesmiths/svc-nvm-ubuntu-16.04:latest
+FROM quay.io/feliun/docker-nvm-yarn
+COPY manifest.json /root/app/manifest.json

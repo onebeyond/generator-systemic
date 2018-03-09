@@ -26,20 +26,19 @@ module.exports = yeoman.Base.extend({
       name    : 'components',
       message : 'Choose your components',
       choices: [
-        { name: 'express'},
         { name: 'mongo'},
         { name: 'redis'},
         { name: 'postgres'}
       ]
     }]).then(function (_answers) {
       this.props = _answers;
-      this.props.components.push('basics', 'config', 'logging');
+      this.props.components.push('app', 'config', 'logging', 'express', 'routes');
       this.props.dockerDependencies = _.size(_.intersection([ 'postgres', 'redis', 'mongo' ], this.props.components)) > 0;
     }.bind(this));
   },
   writing: {
     config: function() {
-      this._copyFiles('conf', 'conf');
+      this._copyFiles('config', 'config');
       this._copyFiles('bin', 'bin');
       this._copyFiles('root', '.');
       this._copyDockerFiles();
@@ -49,7 +48,7 @@ module.exports = yeoman.Base.extend({
     }
   },
   install: function() {
-    this.installDependencies();
+    return this.installDependencies({ npm: true, bower: false });
   },
   end: function() {
     var outputMsg = `\n\nYour service ${this.props.name} has been created.\nnpm run start - start your systemic service`;
@@ -71,13 +70,10 @@ module.exports = yeoman.Base.extend({
   },
   _copyAppFiles: function() {
     const self = this;
-    _.forEach([ './lib/system.js', './lib/init.js' ], function(appFile) {
-      self.fs.copy(self.templatePath(appFile), self.destinationPath(appFile));
-    });
     this.fs.copy(this.templatePath('./test/.eslintrc'), this.destinationPath('./test/.eslintrc'));
     this.fs.copy(this.templatePath('./test/*'), this.destinationPath('./test/'));
     _.forEach(this.props.components, function(component) {
-      self.fs.copy(self.templatePath(`./lib/components/${component}/*`), self.destinationPath(`./lib/components/${component}/`));
+      self.fs.copy(self.templatePath(`./lib/components/${component}/*`), self.destinationPath(`./components/${component}/`));
     });
   }
 });

@@ -1,33 +1,21 @@
-const path = require('path')
+/* eslint no-unused-vars: 0 */
 
-module.exports = function(options = {}) {
+const path = require('path');
 
-    const Confabulous = options.confabulous || require('confabulous')
-    const loaders = Confabulous.loaders
-    let config
+module.exports = ({ confabulous } = {}) => {
+  const Confabulous = confabulous || require('confabulous');
+  const { loaders } = Confabulous;
 
-    function start(cb) {
-        if (config) return cb(null, config)
+  const start = (cb) => {
+    new Confabulous()
+      .add(config => loaders.require({ path: path.join(process.cwd(), 'config', 'default.js'), watch: true }))
+      .add(config => loaders.require({ path: path.join(process.cwd(), 'config', `${process.env.SERVICE_ENV}.js`), mandatory: false }))
+      .add(config => loaders.require({ path: path.join(process.cwd(), 'secrets', 'secrets.json'), watch: true, mandatory: false }))
+      .add(config => loaders.args())
+      .on('loaded', cb)
+      .on('error', cb)
+      .end(cb);
+  };
 
-        new Confabulous()
-            .add(config => loaders.require({ path: path.join(process.cwd(), 'conf', 'default.js'), watch: true }))
-            .add(config => loaders.require({ path: path.join(process.cwd(), 'conf', `${process.env.SERVICE_ENV}.js`), watch: true, mandatory: false }))
-            .add(config => loaders.require({ path: path.join(process.cwd(), 'etc', 'secrets.json'), watch: true, mandatory: false }))
-            .add(config => loaders.args())
-            .on('loaded', cb)
-            .on('error', cb)
-            .on('reloaded', function(_config) {
-                config = _config
-                process.emit('systemic_restart')
-            })
-            .on('reload_error', function(err) {
-                process.emit('confabulous_reload_error', err)
-            })
-            .end(cb)
-    }
-
-    return {
-        start: start
-    }
-
-}
+  return { start };
+};

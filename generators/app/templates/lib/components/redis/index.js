@@ -1,5 +1,5 @@
-const System = require('systemic')
-const redis = require('systemic-redis')
+const System = require('systemic');
+const redis = require('systemic-redis');
 
 module.exports = new System()
-    .add('redis', redis()).dependsOn('config', 'logger')
+    .add('redis', redis()).dependsOn('config', 'logger');

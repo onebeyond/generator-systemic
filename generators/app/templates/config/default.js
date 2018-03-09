@@ -40,7 +40,7 @@ module.exports = {
 
     },
 <% } %>
-<% if (components.indexOf('basics') > -1) { %>
+<% if (components.indexOf('app') > -1) { %>
     service: {
         reload: {
             window: '60s'
@@ -79,4 +79,4 @@ module.exports = {
         ]
     }
 <% } %>
-}
+};

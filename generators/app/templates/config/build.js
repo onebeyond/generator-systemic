@@ -1,7 +1,7 @@
 module.exports = {
 <% if (components.indexOf('mongo') > -1) { %>
     mongodb: {
-        url: 'mongodb://127.0.0.1/example',
+        url: 'mongodb://mongo/example-test',
         options: {
             server: {
                 socketOptions: {
@@ -15,18 +15,19 @@ module.exports = {
 <% } %>
 <% if (components.indexOf('redis') > -1) { %>
     redis: {
-        url: 'redis://localhost:6379/1'
+        url: 'redis://redis/2'
     },
 <% } %>
 <% if (components.indexOf('postgres') > -1) { %>
     postgres: {
+        host: 'postgres',
         database: 'postgres',
         user: 'postgres'
     },
 <% } %>
-<% if (components.indexOf('basics') > -1) { %>
+<% if (components.indexOf('app') > -1) { %>
     logger: {
-        transport: 'console'
+        transport: null
     }
 <% } %>
-}
+};
