@@ -57,6 +57,7 @@ module.exports = yeoman.Base.extend({
   },
   _copyDockerFiles: function() {
     this.fs.copyTpl(this.templatePath('./docker/docker-compose-build.yml'), this.destinationPath('./docker/docker-compose-build.yml'), this.props);
+    this.fs.copyTpl(this.templatePath('./docker/supervisor.conf'), this.destinationPath('./docker/supervisor.conf'), this.props);
     if (this.props.dockerDependencies) {
       this.fs.copyTpl(this.templatePath('./docker/docker-compose-local.yml'), this.destinationPath('./docker/docker-compose-local.yml'), this.props);
     }
