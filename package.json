@@ -1,12 +1,11 @@
 {
   "name": "generator-systemic",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "description": "A generator for a systemic microservice",
   "homepage": "https://github.com/guidesmiths/systemic",
   "author": {
     "name": "Guidesmiths Ltd",
-    "email": "felipe.polo@gmail.com",
-    "url": ""
+    "email": "felipe.polo@gmail.com"
   },
   "files": [
     "generators"
