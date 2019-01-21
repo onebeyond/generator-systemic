@@ -39,7 +39,7 @@ module.exports = yeoman.Base.extend({
   writing: {
     config: function() {
       this._copyFiles('config', 'config');
-      this._copyFiles('bin', 'bin');
+      this._copyFiles('.helm', '.helm');
       this._copyFiles('root', '.');
       this._copyDockerFiles();
     },
@@ -71,7 +71,7 @@ module.exports = yeoman.Base.extend({
   },
   _copyAppFiles: function() {
     const self = this;
-    this.fs.copy(this.templatePath('./test/.eslintrc'), this.destinationPath('./test/.eslintrc'));
+    this.fs.copy(this.templatePath('./test/.eslintrc.json'), this.destinationPath('./test/.eslintrc.json'));
     this.fs.copy(this.templatePath('./test/*'), this.destinationPath('./test/'));
     _.forEach(this.props.components, function(component) {
       self.fs.copy(self.templatePath(`./lib/components/${component}/*`), self.destinationPath(`./components/${component}/`));
