@@ -9,7 +9,7 @@ First, install [Yeoman](http://yeoman.io) and generator-systemic using [npm](htt
 ```bash
 npm set registry ${your private npm registry goes here}
 npm install -g yo
-npm install -g @liber/ generator-systemic
+npm install -g @liber/generator-systemic
 ```
 
 Then generate your new project:
