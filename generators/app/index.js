@@ -1,4 +1,3 @@
-
 const yeoman = require('yeoman-generator');
 const _ = require('lodash');
 const yosay = require('yosay');
@@ -20,20 +19,9 @@ module.exports = yeoman.Base.extend({
       name    : 'description',
       message : 'A brief description',
       default : ''
-    },
-    {
-      type    : 'checkbox',
-      name    : 'components',
-      message : 'Choose your components',
-      choices: [
-        { name: 'mongo'},
-        { name: 'redis'},
-        { name: 'postgres'}
-      ]
     }]).then(function (_answers) {
       this.props = _answers;
-      this.props.components.push('app', 'config', 'logging', 'express', 'routes');
-      this.props.dockerDependencies = _.size(_.intersection([ 'postgres', 'redis', 'mongo' ], this.props.components)) > 0;
+      this.props.components = ['app', 'config', 'logging', 'express', 'routes'];
     }.bind(this));
   },
   writing: {
@@ -41,7 +29,6 @@ module.exports = yeoman.Base.extend({
       this._copyFiles('config', 'config');
       this._copyFiles('.helm', '.helm');
       this._copyFiles('root', '.');
-      this._copyDockerFiles();
     },
     app: function() {
       this._copyAppFiles();
@@ -52,15 +39,7 @@ module.exports = yeoman.Base.extend({
   },
   end: function() {
     var outputMsg = `\n\nYour service ${this.props.name} has been created.\nnpm run start - start your systemic service`;
-    if (this.props.dockerDependencies) outputMsg += '\nnpm run docker - initialise the required docker containers';
     this.log(yosay(outputMsg));
-  },
-  _copyDockerFiles: function() {
-    this.fs.copyTpl(this.templatePath('./docker/docker-compose-build.yml'), this.destinationPath('./docker/docker-compose-build.yml'), this.props);
-    this.fs.copyTpl(this.templatePath('./docker/supervisor.conf'), this.destinationPath('./docker/supervisor.conf'), this.props);
-    if (this.props.dockerDependencies) {
-      this.fs.copyTpl(this.templatePath('./docker/docker-compose-local.yml'), this.destinationPath('./docker/docker-compose-local.yml'), this.props);
-    }
   },
   _copyFiles: function(from, to) {
     const configFiles = fs.readdirSync(path.join(templatesFolder, from));
@@ -71,7 +50,7 @@ module.exports = yeoman.Base.extend({
   },
   _copyAppFiles: function() {
     const self = this;
-    this.fs.copy(this.templatePath('./test/.eslintrc.json'), this.destinationPath('./test/.eslintrc.json'));
+    this.fs.copy(this.templatePath('./test/.eslintrc'), this.destinationPath('./test/.eslintrc'));
     this.fs.copy(this.templatePath('./test/*'), this.destinationPath('./test/'));
     _.forEach(this.props.components, function(component) {
       self.fs.copy(self.templatePath(`./lib/components/${component}/*`), self.destinationPath(`./components/${component}/`));

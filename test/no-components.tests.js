@@ -18,11 +18,11 @@ describe('Systemic basic services with no extra components', function () {
   it('should create a service with proper configuration', function (done) {
     const targetComponents = [ ];
     generateService(targetComponents, function() {
-      assert.file([ 'config/default.js', 'config/local.js', 'config/live.js', 'config/test.js', 'config/build.js' ]);
+      assert.file([ 'config/default.js', 'config/local.js', 'config/prod.js', 'config/test.js', 'config/build.js' ]);
       assert.fileContent('config/default.js', /service/);
       assert.fileContent('config/default.js', /transport: \'bunyan\'/);
       assert.fileContent('config/local.js', /transport: \'console\'/);
-      assert.noFileContent('config/live.js', /logger/);
+      assert.noFileContent('config/prod.js', /logger/);
       assert.fileContent('config/test.js', /transport: null/);
       assert.fileContent('config/build.js', /transport: null/);
       done();
@@ -44,25 +44,6 @@ describe('Systemic basic services with no extra components', function () {
     const targetComponents = [ ];
     generateService(targetComponents, function() {
       assert.file([ '.dockerignore', '.eslintrc', '.gitignore', '.nvmrc', 'Dockerfile', 'index.js', 'package.json', 'README.md', 'system.js' ]);
-      done();
-    });
-  });
-
-  it('should create a service with build files', function (done) {
-    const targetComponents = [ ];
-    generateService(targetComponents, function() {
-      assert.file([ 'bin/build.sh' ]);
-      assert.fileContent('bin/build.sh', /docker\-compose \-\-file \.\/docker\/docker\-compose\-build\.yml build/)
-      done();
-    });
-  });
-
-  it('should create a service with docker files', function (done) {
-    const targetComponents = [ ];
-    generateService(targetComponents, function() {
-      assert.file([ 'docker/docker-compose-build.yml' ]);
-      assert.fileContent('docker/docker-compose-build.yml', /services:/)
-      assert.fileContent('docker/docker-compose-build.yml', /test\-service:/)
       done();
     });
   });

@@ -1,6 +1,6 @@
 {
   "name": "<%= name %>",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "<%= description %>",
   "main": "index.js",
   "scripts": {
@@ -27,7 +27,6 @@
     "supertest": "^3.0.0"
   },
   "dependencies": {
-    "systemic-express": "^1.1.0",
     "on-headers": "^1.0.1",
     "body-parser": "^1.15.2",
     "boom": "^3.2.2",
@@ -40,7 +39,9 @@
     "optimist": "^0.6.1",
     "optional": "^0.1.3",
     "prepper": "^1.1.0",
-    "systemic": "^1.3.0",
+    "ramda": "^0.26.1",
+    "systemic": "^3.0.0",
+    "systemic-express": "^1.1.0",
     "systemic-domain-runner": "^1.1.0"
   }
 }
