@@ -7,14 +7,17 @@
 First, install [Yeoman](http://yeoman.io) and generator-systemic using [npm](https://www.npmjs.com/) (we assume you have pre-installed [node.js](https://nodejs.org/)).
 
 ```bash
+npm set registry ${your private npm registry goes here}
 npm install -g yo
-npm install -g generator-systemic
+npm install -g @liber/ generator-systemic
 ```
 
 Then generate your new project:
 
 ```bash
-yo systemic
+mkdir my-service
+cd my-service
+yo @liber/systemic
 ```
 
 ## Getting To Know Yeoman
