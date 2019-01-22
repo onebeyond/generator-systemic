@@ -1,10 +1,11 @@
+/* eslint-disable no-undef */
 const path = require('path');
 const helpers = require('yeoman-test');
 const assert = require('yeoman-assert');
 
-describe('Systemic basic services with no extra components', function () {
+describe('Systemic basic services with no extra components', () => {
 
-  var generateService = function(components, next) {
+  const generateService = (components, next) => {
     helpers.run(path.join(__dirname, '../generators/app'))
       .withPrompts({
         name: 'test-service',
@@ -15,12 +16,12 @@ describe('Systemic basic services with no extra components', function () {
       .on('end', next);
   };
 
-  it('should create a service with proper configuration', function (done) {
+  it('should create a service with proper configuration', (done) => {
     const targetComponents = [ ];
-    generateService(targetComponents, function() {
+    generateService(targetComponents, () => {
       assert.file([ 'config/default.js', 'config/local.js', 'config/prod.js', 'config/test.js', 'config/build.js' ]);
       assert.fileContent('config/default.js', /service/);
-      assert.fileContent('config/default.js', /transport: \'bunyan\'/);
+      assert.fileContent('config/default.js', /transport: \'console\'/);
       assert.fileContent('config/local.js', /transport: \'console\'/);
       assert.noFileContent('config/prod.js', /logger/);
       assert.fileContent('config/test.js', /transport: null/);
@@ -29,9 +30,9 @@ describe('Systemic basic services with no extra components', function () {
     });
   });
 
-  it('should create a service with proper components folder', function (done) {
+  it('should create a service with proper components folder', (done) => {
     const targetComponents = [ ];
-    generateService(targetComponents, function() {
+    generateService(targetComponents, () => {
       assert.file([ 'components/app/index.js' ]);
       assert.file([ 'components/config/confabulous.js', 'components/config/index.js' ]);
       assert.file([ 'components/config/confabulous.js', 'components/config/index.js' ]);
@@ -40,10 +41,10 @@ describe('Systemic basic services with no extra components', function () {
     });
   });
 
-  it('should create a service with basic files', function (done) {
+  it('should create a service with basic files', (done) => {
     const targetComponents = [ ];
-    generateService(targetComponents, function() {
-      assert.file([ '.dockerignore', '.eslintrc', '.gitignore', '.nvmrc', 'Dockerfile', 'index.js', 'package.json', 'README.md', 'system.js' ]);
+    generateService(targetComponents, () => {
+      assert.file([ '.dockerignore', '.eslintrc.json', '.gitignore', '.nvmrc', 'Dockerfile', 'index.js', 'package.json', 'README.md', 'system.js' ]);
       done();
     });
   });
