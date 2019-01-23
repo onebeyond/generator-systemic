@@ -12,6 +12,10 @@ image:
 nameOverride: ""
 fullnameOverride: "<%= name %>"
 
+environment:
+  name: test
+  hasSecret: false
+
 service:
   type: ClusterIP
   port: 80
