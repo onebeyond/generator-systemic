@@ -3,6 +3,23 @@ module.exports = {
 		host: '0.0.0.0',
 		port: 4000,
 	},
+	metrics: {
+		key: process.env.APPINSIGHTS_INSTRUMENTATIONKEY,
+		internalLogging: true,
+		context: {
+			tags: {
+				'ai.cloud.role': process.env.npm_package_name,
+				'ai.cloud.roleInstance': process.env.HOSTNAME || 'local',
+			},
+		},
+		autoCollect: {
+			requests: true,
+			performance: true,
+			exceptions: true,
+			dependencies: true,
+			console: false,
+		},
+	},
 	logger: {
 		transport: 'console',
 		include: [

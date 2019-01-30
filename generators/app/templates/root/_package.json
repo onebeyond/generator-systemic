@@ -42,6 +42,7 @@
     "ramda": "^0.26.1",
     "systemic": "^3.0.0",
     "systemic-express": "^1.1.0",
-    "systemic-domain-runner": "^1.1.0"
+    "systemic-domain-runner": "^1.1.0",
+    "systemic-azure-metrics": "^0.1.1"
   }
 }
