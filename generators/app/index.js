@@ -21,7 +21,7 @@ module.exports = yeoman.Base.extend({
       default : ''
     }]).then(function (_answers) {
       this.props = _answers;
-      this.props.components = ['app', 'config', 'logging', 'express', 'routes', 'metrics'];
+      this.props.components = ['app', 'config', 'logging', 'express', 'routes'];
     }.bind(this));
   },
   writing: {
