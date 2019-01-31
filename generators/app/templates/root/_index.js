@@ -12,7 +12,8 @@ const die = (message, err) => {
 	process.exit(1);
 };
 
-runner(system(), { logger: emergencyLogger }).start((err, { logger, pkg }) => {
+runner(system(), { logger: emergencyLogger }).start((err, components) => {
 	if (err) die('Error starting system', err);
+	const { logger, pkg } = components;
 	logger.info(`${pkg.name} has started`);
 });
