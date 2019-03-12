@@ -12,7 +12,7 @@ module.exports = yeoman.Base.extend({
       type    : 'input',
       name    : 'name',
       message : 'Your service name',
-      default : this.appname
+      default : this.appname.replace(/\s+/g, '-')
     },
     {
       type    : 'input',
