@@ -1,0 +1,51 @@
+pool:
+  name: Hosted Ubuntu 1604
+
+steps:
+  - task: npmAuthenticate@0
+    displayName: 'npm Authenticate .npmrc'
+    inputs:
+      workingFile: .npmrc
+
+  - task: Docker@0
+    displayName: 'Build an image'
+    inputs:
+      azureSubscription: development
+      azureContainerRegistry: '{"loginServer":"ilwebshops.azurecr.io", "id" : "/subscriptions/4ebd66c4-aaad-4b1b-bb4e-740db9f1fc4d/resourceGroups/li.development/providers/Microsoft.ContainerRegistry/registries/ilwebshops"}'
+      buildArguments: 'NPM_TOKEN=$(NPM_TOKEN)'
+      includeLatestTag: true
+
+  - bash: |
+      docker images 
+      echo "docker compose up"
+      ERROR_UP=$((docker-compose --file ./docker/cicd/docker-compose.yml up --force -d --build) 2>&1)
+      sleep 10
+
+      docker exec service-liber-api bash -c "npm run test-ci"
+      docker cp service-liber-api:/usr/src/app/test-results.xml ./
+
+      echo "docker compose down"
+      ERROR_DOWN=$((docker-compose --file ./docker/cicd/docker-compose.yml down) 2>&1)
+
+      echo "ERROR_UP=$ERROR_UP"
+      echo "ERROR_DOWN=$ERROR_DOWN"
+    failOnStderr: true
+    displayName: 'Bash Script'
+
+  - task: PublishTestResults@2
+    displayName: 'Publish Test Results **/test-*.xml'
+    inputs:
+      testResultsFiles: '**/test-*.xml'
+
+  - task: Docker@0
+    displayName: 'Push an image'
+    inputs:
+      azureSubscription: development
+      azureContainerRegistry: '{"loginServer":"ilwebshops.azurecr.io", "id" : "/subscriptions/4ebd66c4-aaad-4b1b-bb4e-740db9f1fc4d/resourceGroups/li.development/providers/Microsoft.ContainerRegistry/registries/ilwebshops"}'
+      action: 'Push an image'
+      includeLatestTag: true
+
+  - task: PublishBuildArtifacts@1
+    displayName: 'Publish Artifact: drop'
+    inputs:
+      PathtoPublish: .helm

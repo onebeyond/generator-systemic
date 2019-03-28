@@ -6,6 +6,7 @@
   "scripts": {
     "local": "LIBER_ENV=local node index.js",
     "start": "node index.js",
+    "test-ci": "LIBER_ENV=test mocha --reporter mocha-junit-reporter",
     "test": "LIBER_ENV=test mocha --reporter spec './test/**/*.test.js'",
     "lint": "eslint .",
     "manifest": "node_modules/make-manifest/bin/make-manifest",
