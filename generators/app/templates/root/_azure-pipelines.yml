@@ -21,8 +21,8 @@ steps:
       ERROR_UP=$((docker-compose --file ./docker/cicd/docker-compose.yml up --force -d --build) 2>&1)
       sleep 10
 
-      docker exec service-liber-api bash -c "npm run test-ci"
-      docker cp service-liber-api:/usr/src/app/test-results.xml ./
+      docker exec <%= name %> bash -c "npm run test-ci"
+      docker cp <%= name %>:/usr/src/app/test-results.xml ./
 
       echo "docker compose down"
       ERROR_DOWN=$((docker-compose --file ./docker/cicd/docker-compose.yml down) 2>&1)
