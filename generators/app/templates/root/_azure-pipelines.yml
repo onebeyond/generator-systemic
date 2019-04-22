@@ -1,3 +1,6 @@
+trigger:
+- master
+
 pool:
   name: Hosted Ubuntu 1604
 
@@ -16,7 +19,6 @@ steps:
       includeLatestTag: true
 
   - bash: |
-      echo "docker compose up"
       ERROR_UP=$((docker-compose --file ./docker/cicd/docker-compose.yml up --force -d --build) 2>&1)
       sleep 10
 
