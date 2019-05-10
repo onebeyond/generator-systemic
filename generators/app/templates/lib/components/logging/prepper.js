@@ -11,7 +11,7 @@ module.exports = ({ prepper, transport } = {}) => {
 		const logger = new prepperFn.Logger({
 			handlers: [
 				new handlers.Merge({ package: pkg }),
-				new handlers.Merge({ service: { env: process.env.LIBER_ENV } }),
+				new handlers.Merge({ service: { env: process.env.SERVICE_ENV } }),
 				new handlers.Process(),
 				new handlers.System(),
 				new handlers.Timestamp(),

@@ -10,7 +10,7 @@ module.exports = ({ confabulous } = {}) => {
 			.add(() => loaders.require({ path: path.join(process.cwd(), 'config', 'default.js'), watch: true }))
 			.add(() =>
 				loaders.require({
-					path: path.join(process.cwd(), 'config', `${process.env.LIBER_ENV}.js`),
+					path: path.join(process.cwd(), 'config', `${process.env.SERVICE_ENV}.js`),
 					mandatory: false,
 				})
 			)
