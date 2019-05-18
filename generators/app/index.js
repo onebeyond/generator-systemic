@@ -28,12 +28,13 @@ module.exports = yeoman.Base.extend({
       choices: [
         { name: 'mongo'},
         { name: 'redis'},
-        { name: 'postgres'}
+        { name: 'postgres'},
+        { name: 'mysql'}
       ]
     }]).then(function (_answers) {
       this.props = _answers;
       this.props.components.push('app', 'config', 'logging', 'express', 'routes');
-      this.props.dockerDependencies = _.size(_.intersection([ 'postgres', 'redis', 'mongo' ], this.props.components)) > 0;
+      this.props.dockerDependencies = _.size(_.intersection([ 'postgres', 'redis', 'mongo', 'mysql' ], this.props.components)) > 0;
     }.bind(this));
   },
   writing: {

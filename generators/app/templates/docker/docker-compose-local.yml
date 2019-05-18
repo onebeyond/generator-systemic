@@ -20,6 +20,12 @@ services:
     ports:
      - '5432:5432'<% } %>
 
+<% if (components.indexOf('mysql') > -1) { %>  mysql:
+    image: mysql
+    container_name: mysql
+    ports:
+     - '5432:5432'<% } %>
+
 networks:
   default:
     external:

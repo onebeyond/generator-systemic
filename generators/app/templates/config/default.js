@@ -40,6 +40,11 @@ module.exports = {
 
     },
 <% } %>
+<% if (components.indexOf('mysql') > -1) { %>
+    mysql: {
+
+    },
+<% } %>
 <% if (components.indexOf('app') > -1) { %>
     service: {
         reload: {

@@ -9,6 +9,7 @@ services:
 <% if (components.indexOf('mongo') > -1) { %>      - mongo:mongo<% } %>
 <% if (components.indexOf('redis') > -1) { %>      - redis:redis<% } %>
 <% if (components.indexOf('postgres') > -1) { %>      - postgres:postgres<% } %>
+<% if (components.indexOf('mysql') > -1) { %>      - mysql:mysql<% } %>
 
 <% if (components.indexOf('mongo') > -1) { %>  mongo:
     image: mongo<% } %>

@@ -24,6 +24,12 @@ module.exports = {
         user: 'postgres'
     },
 <% } %>
+<% if (components.indexOf('mysql') > -1) { %>
+    mysql: {
+        database: 'mysql',
+        user: 'mysql'
+    },
+<% } %>
 <% if (components.indexOf('app') > -1) { %>
     logger: {
         transport: null
