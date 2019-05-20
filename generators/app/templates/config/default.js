@@ -5,7 +5,7 @@ module.exports = {
 	},
 	metrics: {
 		key: process.env.APPINSIGHTS_INSTRUMENTATIONKEY,
-		internalLogging: true,
+		internalLogging: false,
 		context: {
 			tags: {
 				'ai.cloud.role': process.env.npm_package_name,
