@@ -47,7 +47,7 @@
   "repository": "GuideSmiths Ltd/generator-systemic",
   "scripts": {
     "prepublish": "gulp prepublish",
-    "test": "gulp"
+    "test": "gulp test"
   },
   "license": "ISC"
 }
