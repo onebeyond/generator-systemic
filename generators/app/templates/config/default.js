@@ -8,38 +8,6 @@ module.exports = {
         }
     },
 <% } %>
-<% if (components.indexOf('mongo') > -1) { %>
-    mongodb: {
-        options: {
-            db: {
-                readPreference: 'secondaryPreferred',
-                maxTimeMS: 30000
-            },
-            server: {
-                poolSize: 5,
-                autoReconnect: true,
-                reconnectTries: 30,
-                reconnectInterval: 1000,
-                socketOptions: {
-                    keepAlive: 5000,
-                    connectTimeoutMS: 10000,
-                    socketTimeoutMS: 30000,
-                    noDelay: true
-                }
-            }
-        }
-    },
-<% } %>
-<% if (components.indexOf('redis') > -1) { %>
-    redis: {
-
-    },
-<% } %>
-<% if (components.indexOf('postgres') > -1) { %>
-    postgres: {
-
-    },
-<% } %>
 <% if (components.indexOf('app') > -1) { %>
     service: {
         reload: {
