@@ -20,19 +20,9 @@ module.exports = yeoman.Base.extend({
       name    : 'description',
       message : 'A brief description',
       default : ''
-    },
-    {
-      type    : 'checkbox',
-      name    : 'components',
-      message : 'Choose your components',
-      choices: [
-        { name: 'mongo'},
-        { name: 'redis'},
-        { name: 'postgres'}
-      ]
     }]).then(function (_answers) {
       this.props = _answers;
-      this.props.components.push('app', 'config', 'logging', 'express', 'routes');
+      this.props.components = ['app', 'config', 'logging', 'express', 'routes'];
       this.props.dockerDependencies = _.size(_.intersection([ 'postgres', 'redis', 'mongo' ], this.props.components)) > 0;
     }.bind(this));
   },

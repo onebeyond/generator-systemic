@@ -28,9 +28,6 @@
   },
   "dependencies": {
     <% if (components.indexOf('express') > -1) { %>    "systemic-express": "^1.1.0",<% } %>
-    <% if (components.indexOf('mongo') > -1) { %>    "systemic-mongodb": "^1.0.4",<% } %>
-    <% if (components.indexOf('postgres') > -1) { %>    "systemic-pg": "^1.2.0",<% } %>
-    <% if (components.indexOf('redis') > -1) { %>    "systemic-redis": "^1.0.2",<% } %>
     "ramda": "0.25.0",
     "on-headers": "^1.0.1",
     "body-parser": "^1.15.2",

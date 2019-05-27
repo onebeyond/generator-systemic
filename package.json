@@ -33,7 +33,6 @@
     "gulp-istanbul": "^1.0.0",
     "gulp-line-ending-corrector": "^1.0.1",
     "gulp-mocha": "^3.0.1",
-    "gulp-nsp": "^2.1.0",
     "gulp-plumber": "^1.0.0",
     "yeoman-assert": "^2.0.0",
     "yeoman-test": "^1.0.0"
@@ -47,7 +46,7 @@
   "repository": "GuideSmiths Ltd/generator-systemic",
   "scripts": {
     "prepublish": "gulp prepublish",
-    "test": "gulp"
+    "test": "gulp test"
   },
   "license": "ISC"
 }
