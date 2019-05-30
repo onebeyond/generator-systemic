@@ -6,7 +6,7 @@ module.exports = ({ confabulous } = {}) => {
   const Confabulous = confabulous || require('confabulous');
   const { loaders } = Confabulous;
 
-  const start = (cb) => {
+  const start = (params, cb) => {
     new Confabulous()
       .add(config => loaders.require({ path: path.join(process.cwd(), 'config', 'default.js'), watch: true }))
       .add(config => loaders.require({ path: path.join(process.cwd(), 'config', `${process.env.SERVICE_ENV}.js`), mandatory: false }))

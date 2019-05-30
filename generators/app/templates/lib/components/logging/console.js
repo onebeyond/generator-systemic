@@ -29,7 +29,7 @@ module.exports = () => {
     else log(colour(info.render(data)));
   };
 
-  const start = (cb) => cb(null, onMessage);
+  const start = (params, cb) => cb(null, onMessage);
 
   return { start };
 };
