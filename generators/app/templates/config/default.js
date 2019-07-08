@@ -3,6 +3,31 @@ module.exports = {
 		host: '0.0.0.0',
 		port: 4000,
 	},
+	routes: {
+		admin: {
+			swaggerOptions: {
+				swaggerDefinition: {
+					info: {
+						description: 'Documentation for <%= name %>',
+						title: '<%= name %>',
+						version: '1.0.0',
+					},
+					host: process.env.SERVICE_ENV || 'localhost:4000',
+					basePath: '/v1',
+					produces: ['application/json'],
+					schemes: ['http'],
+					securityDefinitions: {
+						JWT: {
+							type: 'apiKey',
+							in: 'header',
+							name: 'Authorization',
+							description: '',
+						},
+					},
+				},
+			},
+		},
+	},
 	metrics: {
 		key: process.env.APPINSIGHTS_INSTRUMENTATIONKEY,
 		internalLogging: false,

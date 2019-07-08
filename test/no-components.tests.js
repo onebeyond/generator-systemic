@@ -22,10 +22,20 @@ describe('Systemic basic services with no extra components', () => {
       assert.file([ 'config/default.js', 'config/local.js', 'config/prod.js', 'config/test.js', 'config/build.js' ]);
       assert.fileContent('config/default.js', /service/);
       assert.fileContent('config/default.js', /transport: \'console\'/);
+      assert.fileContent('config/default.js', /swaggerOptions/);
+      assert.fileContent('config/default.js', /swaggerDefinition/);
       assert.fileContent('config/local.js', /transport: \'console\'/);
       assert.noFileContent('config/prod.js', /logger/);
       assert.fileContent('config/test.js', /transport: null/);
       assert.fileContent('config/build.js', /transport: null/);
+      done();
+    });
+  });
+
+  it('should create a service with proper CI/CD', (done) => {
+    const targetComponents = [ ];
+    generateService(targetComponents, () => {
+      assert.file([ 'docker/cicd/docker-compose.yml' ]);
       done();
     });
   });
