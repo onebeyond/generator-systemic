@@ -4,9 +4,6 @@ trigger:
 pool:
   name: Hosted Ubuntu 1604
 
-variables:
-  - group: "Azure Service Bus"
-
 steps:
   - task: npmAuthenticate@0
     displayName: 'npm Authenticate .npmrc'
