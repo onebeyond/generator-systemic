@@ -5,7 +5,6 @@ WORKDIR /usr/src/app
 
 # Install app dependencies
 COPY package*.json ./
-ADD .npmrc ./.npmrc
 
 RUN npm install
 

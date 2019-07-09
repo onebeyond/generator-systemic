@@ -28,6 +28,7 @@ module.exports = yeoman.Base.extend({
     config: function() {
       this._copyFiles('config', 'config');
       this._copyFiles('.helm', '.helm');
+      this._copyFiles('docker', 'docker');
       this._copyFiles('root', '.');
     },
     app: function() {

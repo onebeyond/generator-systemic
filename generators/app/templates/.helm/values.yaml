@@ -5,7 +5,7 @@
 replicaCount: 1
 
 image:
-  repository: ilwebshops.azurecr.io/infinitaslearning/<%= name %>
+  repository: ilwebshops.azurecr.io/<%= name %>
   tag: latest
   pullPolicy: Always
 

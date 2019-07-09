@@ -10,13 +10,15 @@ steps:
     inputs:
       workingFile: .npmrc
 
-  - task: Docker@0
-    displayName: 'Build an image'
+  - task: Docker@2
+    displayName: build
     inputs:
-      azureSubscription: development
-      azureContainerRegistry: '{"loginServer":"ilwebshops.azurecr.io", "id" : "/subscriptions/4ebd66c4-aaad-4b1b-bb4e-740db9f1fc4d/resourceGroups/li.development/providers/Microsoft.ContainerRegistry/registries/ilwebshops"}'
-      buildArguments: 'NPM_TOKEN=$(NPM_TOKEN)'
-      includeLatestTag: true
+      containerRegistry: 'Docker Registry'
+      repository: <%= name %>
+      Dockerfile: Dockerfile
+      tags: |
+       $(Build.BuildId)
+       latest
 
   - bash: |
       ERROR_UP=$((docker-compose --file ./docker/cicd/docker-compose.yml up --force -d --build) 2>&1)
@@ -30,21 +32,24 @@ steps:
 
       echo "ERROR_UP=$ERROR_UP"
       echo "ERROR_DOWN=$ERROR_DOWN"
-    failOnStderr: true
+    failOnStderr: false
     displayName: 'Bash Script'
 
   - task: PublishTestResults@2
     displayName: 'Publish Test Results **/test-*.xml'
     inputs:
       testResultsFiles: '**/test-*.xml'
+      failTaskOnFailedTests: true
 
-  - task: Docker@0
-    displayName: 'Push an image'
+  - task: Docker@2
+    displayName: push
     inputs:
-      azureSubscription: development
-      azureContainerRegistry: '{"loginServer":"ilwebshops.azurecr.io", "id" : "/subscriptions/4ebd66c4-aaad-4b1b-bb4e-740db9f1fc4d/resourceGroups/li.development/providers/Microsoft.ContainerRegistry/registries/ilwebshops"}'
-      action: 'Push an image'
-      includeLatestTag: true
+      containerRegistry: 'Docker Registry'
+      repository: <%= name %>
+      Dockerfile: Dockerfile
+      tags: |
+       $(Build.BuildId)
+       latest
 
   - task: PublishBuildArtifacts@1
     displayName: 'Publish Artifact: drop'
