@@ -1,4 +1,4 @@
-# generator-systemic 
+# generator-systemic
 =======
 > A generator for a systemic microservice
 
@@ -14,6 +14,8 @@ npm install -g generator-systemic
 Then generate your new project:
 
 ```bash
+mkdir my-service
+cd my-service
 yo systemic
 ```
 
