@@ -8,8 +8,9 @@
     "email": "felipe.polo@gmail.com"
   },
   "scripts": {
-    "test": "gulp",
-    "prepush": "npm run test"
+    "test": "mocha --reporter spec './test/**/*.tests.js'",
+    "lint": "eslint .",
+    "lint:fix": "eslint --fix ."
   },
   "files": [
     "generators"
