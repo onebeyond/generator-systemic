@@ -37,7 +37,8 @@
   },
   "devDependencies": {
     "eslint": "^6.7.1",
-    "eslint-config-imperative-es6": "^2.1.0",
+    "eslint-config-airbnb-base": "^14.0.0",
+    "eslint-plugin-import": "^2.18.2",
     "eslint-plugin-mocha": "^6.2.2",
     "husky": "^3.1.0",
     "yeoman-assert": "^2.0.0",
