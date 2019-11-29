@@ -15,37 +15,43 @@
     "prepush": "npm run test",
     "postinstall": "node_modules/.bin/eslint . --fix"
   },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run lint",
+      "pre-push": "npm run test"
+    }
+  },
   "devDependencies": {
     "chai": "^4.2.0",
-    "eslint": "^4.19.1",
-    "eslint-config-airbnb-base": "^11.3.2",
-    "eslint-plugin-import": "^2.14.0",
-    "eslint-plugin-mocha": "^5.2.0",
+    "eslint": "^6.7.1",
+    "eslint-config-airbnb-base": "^14.0.0",
+    "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-mocha": "^6.2.2",
     "expect.js": "^0.3.1",
-    "husky": "^1.1.0",
+    "husky": "^3.1.0",
     "make-manifest": "^1.0.1",
-    "mocha": "^5.2.0",
-    "mocha-junit-reporter": "^1.18.0",
-    "sinon": "^7.3.2",
-    "supertest": "^3.0.0"
+    "mocha": "^6.2.2",
+    "mocha-junit-reporter": "^1.23.1",
+    "sinon": "^7.5.0",
+    "supertest": "^4.0.2"
   },
   "dependencies": {
-    "on-headers": "^1.0.1",
-    "body-parser": "^1.15.2",
-    "boom": "^3.2.2",
-    "bunyan": "^1.8.5",
-    "chalk": "^1.1.3",
-    "confabulous": "^1.1.0",
-    "debug": "^2.2.0",
+    "on-headers": "^1.0.2",
+    "body-parser": "^1.19.0",
+    "boom": "^7.3.0",
+    "bunyan": "^1.8.12",
+    "chalk": "^3.0.0",
+    "confabulous": "^1.7.0",
+    "debug": "^4.1.1",
     "express-swagger-generator": "^1.1.15",
     "hogan.js": "^3.0.2",
     "make-manifest": "^1.0.1",
     "optimist": "^0.6.1",
-    "optional": "^0.1.3",
-    "prepper": "^1.1.0",
+    "optional": "^0.1.4",
+    "prepper": "^1.2.0",
     "ramda": "^0.26.1",
-    "systemic": "^3.0.0",
-    "systemic-express": "^1.1.0",
+    "systemic": "^3.3.0",
+    "systemic-express": "^1.1.1",
     "systemic-domain-runner": "^1.1.0"
   }
 }
