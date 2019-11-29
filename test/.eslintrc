@@ -1,9 +1,0 @@
-{
-	"env": {
-		"mocha": true
-	},
-	"plugins": ["mocha"],
-	"rules": {
-		"no-undef": 0
-	}
-}
