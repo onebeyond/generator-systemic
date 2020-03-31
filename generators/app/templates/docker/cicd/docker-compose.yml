@@ -2,6 +2,6 @@ version: '3'
 
 services:
   service:
-    image: ilwebshops.azurecr.io/infinitaslearning/<%= name %>:latest
+    image: ilwebshops.azurecr.io/infinitaslearning/<%= name %>:latest  # Change to the proper container registry
     container_name: <%= name %>
     command: ['bash', '-c', 'tail -f /dev/null']

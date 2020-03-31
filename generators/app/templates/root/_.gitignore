@@ -1,3 +1,6 @@
 node_modules
 manifest.json
 *.log
+.nyc_output
+coverage
+test-results.xml

@@ -7,6 +7,7 @@
     "local": "SERVICE_ENV=local node index.js",
     "start": "node index.js",
     "test-ci": "SERVICE_ENV=test mocha --reporter mocha-junit-reporter",
+    "test:report": "SERVICE_ENV=test nyc --reporter=lcovonly mocha --reporter mocha-junit-reporter './test/**/*.test.js'",
     "test": "SERVICE_ENV=test mocha --reporter spec './test/**/*.test.js'",
     "lint": "eslint .",
     "manifest": "node_modules/make-manifest/bin/make-manifest",
@@ -26,6 +27,7 @@
     "make-manifest": "^1.0.1",
     "mocha": "^5.2.0",
     "mocha-junit-reporter": "^1.18.0",
+    "nyc": "^14.1.1",
     "sinon": "^7.3.2",
     "supertest": "^3.0.0"
   },

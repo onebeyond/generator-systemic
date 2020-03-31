@@ -11,41 +11,69 @@ steps:
       workingFile: .npmrc
 
   - task: Docker@2
-    displayName: build
+    displayName: 'Build Docker image'
     inputs:
-      containerRegistry: 'Docker Registry'
-      repository: <%= name %>
-      Dockerfile: Dockerfile
+      containerRegistry: 'ACR Connection'
+      repository: $(Build.Repository.Name)
+      command: 'build'
+      Dockerfile: '**/Dockerfile'
       tags: |
        $(Build.BuildId)
        latest
+      arguments: '--build-arg NPM_TOKEN=$(NPM_TOKEN)'
 
   - bash: |
       ERROR_UP=$((docker-compose --file ./docker/cicd/docker-compose.yml up --force -d --build) 2>&1)
       sleep 10
-
-      docker exec <%= name %> bash -c "npm run test-ci"
+      docker exec <%= name %> sh -c "npm run test:report" 2>&1
       docker cp <%= name %>:/usr/src/app/test-results.xml ./
+      docker cp <%= name %>:/usr/src/app/coverage/lcov.info ./lcov.info
+      sed -i 's|SF:/usr/src/app/|SF:|g' lcov.info
 
-      echo "docker compose down"
+      echo "docker compose down"                                                   
       ERROR_DOWN=$((docker-compose --file ./docker/cicd/docker-compose.yml down) 2>&1)
 
       echo "ERROR_UP=$ERROR_UP"
       echo "ERROR_DOWN=$ERROR_DOWN"
-    failOnStderr: false
-    displayName: 'Bash Script'
+    failOnStderr: true                        
+    displayName: 'run tests and generate reports'
 
   - task: PublishTestResults@2
     displayName: 'Publish Test Results **/test-*.xml'
     inputs:
+      testResultsFormat: 'JUnit'
       testResultsFiles: '**/test-*.xml'
       failTaskOnFailedTests: true
+
+    - task: SonarQubePrepare@4
+    displayName: 'sonarqube: prepare analysis'
+    inputs:
+      SonarQube: 'infinitas-sonarqube'
+      scannerMode: 'CLI'
+      configMode: 'manual'
+      cliProjectKey: $(Build.Repository.Name) 
+      cliProjectName: $(Build.Repository.Name)
+      cliSources: '.'
+      extraProperties: |
+        sonar.sources=.
+        sonar.exclusions=node_modules/**
+        sonar.language=js
+        sonar.projectVersion=$(Build.BuildNumber)
+        sonar.javascript.lcov.reportPaths=lcov.info
+
+  - task: SonarQubeAnalyze@4
+    displayName: 'sonarqube: run analysis'
+
+  - task: SonarQubePublish@4
+    displayName: 'sonarqube: publish analysis'
+    inputs:
+      pollingTimeoutSec: '300'
 
   - task: Docker@2
     displayName: push
     inputs:
       containerRegistry: 'Docker Registry'
-      repository: <%= name %>
+      repository:  $(Build.Repository.Name)
       Dockerfile: Dockerfile
       tags: |
        $(Build.BuildId)
