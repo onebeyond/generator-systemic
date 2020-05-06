@@ -38,7 +38,7 @@
   "dependencies": {
     "on-headers": "^1.0.2",
     "body-parser": "^1.19.0",
-    "boom": "^7.3.0",
+    "@hapi/boom": "^9.1.0",
     "bunyan": "^1.8.12",
     "chalk": "^4.0.0",
     "confabulous": "^1.7.0",
