@@ -1,0 +1,83 @@
+openapi: "3.0.0"
+info:
+  version: 1.0.0
+  title: Swagger <%= name %>
+  description: Documentation for <%= name %> synchronous api
+  termsOfService: http://swagger.io/terms/
+  contact:
+    name: Swagger API Team
+    email: apiteam@swagger.io
+    url: http://swagger.io
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0.html
+
+paths:
+  /__/manifest:
+    get:
+      tags:
+        - Admin
+      description: Returns the service manifest file
+      operationId: manifest
+      responses:
+        '200':
+          description: manifest response
+          content:
+            application/json:
+              schema:
+                oneOf:
+                  - $ref: '#/components/schemas/EmptyManifest'
+                  - $ref: '#/components/schemas/Manifest'
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+components:
+  schemas:
+    EmptyManifest:
+      type: object
+      minProperties: 0
+      maxProperties: 0
+
+    Manifest:
+      type: object
+      required:
+        - name
+        - version
+        - timestamp
+        - scm
+      properties:
+        name:
+          type: string
+        version:
+          type: string
+        timestamp:
+          type: string
+        scm:
+          type: object
+          required:
+            - remote
+            - branch
+            - commit
+          properties:
+            remote:
+              type: string
+            branch:
+              type: string
+            commit:
+              type: string
+          
+    Error:
+      type: object
+      required:
+        - code
+        - message
+      properties:
+        code:
+          type: integer
+          format: int32
+        message:
+          type: string
