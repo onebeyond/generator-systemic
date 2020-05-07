@@ -2,6 +2,10 @@
   "name": "<%= name %>",
   "version": "0.0.1",
   "description": "<%= description %>",
+  "author": {
+    "name": "<%= author %>",
+    "email": "<%= email %>"
+  },
   "main": "index.js",
   "scripts": {
     "local": "SERVICE_ENV=local node index.js",
