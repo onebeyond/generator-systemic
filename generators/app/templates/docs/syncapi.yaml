@@ -5,9 +5,8 @@ info:
   description: Documentation for <%= name %> synchronous api
   termsOfService: http://swagger.io/terms/
   contact:
-    name: Swagger API Team
-    email: apiteam@swagger.io
-    url: http://swagger.io
+    name: <%= author %>
+    email: <%= email %>
   license:
     name: Apache 2.0
     url: https://www.apache.org/licenses/LICENSE-2.0.html
