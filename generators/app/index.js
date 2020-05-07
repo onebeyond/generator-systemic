@@ -49,6 +49,7 @@ module.exports = class extends Generator {
 			});
 		};
 
+		copyFiles('docs', 'docs');
 		copyFiles('config', 'config');
 		copyFiles('root', '.');
 		copyAppFiles();
