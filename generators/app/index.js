@@ -30,13 +30,13 @@ module.exports = class extends Generator {
 			type: 'input',
 			name: 'author',
 			message: 'The service author',
-			default: '',
+			default: 'author',
 		},
 		{
 			type: 'input',
 			name: 'email',
 			message: 'The service author contact email',
-			default: '',
+			default: 'author@domain.com',
 		}];
 
 		return this.prompt(prompts).then(props => {
