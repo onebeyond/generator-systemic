@@ -1,4 +1,3 @@
-all: ensure-dependencies brand package qa check package-clean-up
 
 
 ensure-dependencies:
@@ -16,21 +15,5 @@ package:
 	@docker images
 
 qa:
-	@echo "Checking that our <%= name %> container tests dont fail..."
-	@docker run --name <%= name %> --env SERVICE_ENV=build --entrypoint npm <%= name %> run qa
-	@docker rm <%= name %>
-	@docker ps -a
-
-check:
-	@echo "Checking that our <%= name %> container is up and running..."
-	@docker run --name <%= name %> --publish 4000:4000 --detach <%= name %>
-	@sleep 2
-	@curl http://localhost:4000/__/manifest
-	@docker stop <%= name %>
-	@docker rm <%= name %>
-	@docker ps -a
-
-package-clean-up:
-	@echo "Deleting our <%= name %> image..."
-	@docker rmi <%= name %>
-	@docker images
+	@echo "Checking that our <%= name %> tests dont fail..."
+	@npm run qa
