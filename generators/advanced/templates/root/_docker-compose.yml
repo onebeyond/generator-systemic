@@ -3,7 +3,7 @@ version: "3"
 services:
   rabbitmq:
     image: "rabbitmq:3-management"
-    container_name: tutia_rabbitmq
+    container_name: <%= name %>_rabbitmq
     hostname: "rabbitmq"
     environment:
       RABBITMQ_ERLANG_COOKIE: "erlang_cookie"
@@ -16,6 +16,6 @@ services:
 
   mongodb: 
     image: "mongo:3.2.0"
-    container_name: "tutia_mongo"
+    container_name: <%= name %>_mongo
     ports: 
       - "27017:27017"
