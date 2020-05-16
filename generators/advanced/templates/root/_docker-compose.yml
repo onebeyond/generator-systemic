@@ -1,0 +1,21 @@
+version: "3"
+
+services:
+  rabbitmq:
+    image: "rabbitmq:3-management"
+    container_name: tutia_rabbitmq
+    hostname: "rabbitmq"
+    environment:
+      RABBITMQ_ERLANG_COOKIE: "erlang_cookie"
+      RABBITMQ_DEFAULT_USER: "rabbitmq"
+      RABBITMQ_DEFAULT_PASS: "rabbitmq"
+      RABBITMQ_DEFAULT_VHOST: "vhost_name"
+    ports:
+      - "15672:15672"
+      - "5672:5672"
+
+  mongodb: 
+    image: "mongo:3.2.0"
+    container_name: "tutia_mongo"
+    ports: 
+      - "27017:27017"

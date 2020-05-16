@@ -10,8 +10,11 @@
   "scripts": {
     "local": "SERVICE_ENV=local node index.js",
     "start": "node index.js",
-    "test-ci": "SERVICE_ENV=test mocha --reporter mocha-junit-reporter",
-    "test": "SERVICE_ENV=test mocha --reporter spec './test/**/*.test.js'",
+    "infra-up": "docker-compose -f docker-compose.yml up -d",
+    "infra-down": "docker-compose -f docker-compose.yml down",
+    "sleep": "node test/helpers/sleep.js 20000",
+    "test": "npm run infra-up && npm run sleep && SERVICE_ENV=test mocha --reporter spec './test/**/*.test.js' && npm run infra-down",
+    "test-ci": "npm run infra-up && npm run sleep && SERVICE_ENV=test mocha --reporter mocha-junit-reporter && npm run infra-down",
     "lint": "eslint .",
     "manifest": "node_modules/make-manifest/bin/make-manifest",
     "qa": "npm run lint && npm run test",
