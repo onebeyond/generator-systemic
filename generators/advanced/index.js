@@ -41,7 +41,7 @@ module.exports = class extends Generator {
 
 		return this.prompt(prompts).then(props => {
 			this.props = props;
-			this.props.components = ['app', 'config', 'logging', 'express', 'routes'];
+			this.props.components = ['app', 'config', 'logging', 'express', 'routes', 'store', 'bus', 'controller'];
 		});
 	}
 
@@ -56,8 +56,9 @@ module.exports = class extends Generator {
 		const copyAppFiles = () => {
 			this.fs.copy(this.templatePath('./test/.eslintrc'), this.destinationPath('./test/.eslintrc'));
 			this.fs.copy(this.templatePath('./test/*'), this.destinationPath('./test/'));
+			this.fs.copy(this.templatePath('./test/helpers/*'), this.destinationPath('./test/helpers/'));
 			this.props.components.forEach(component => {
-				this.fs.copy(this.templatePath(`./lib/components/${component}/*`), this.destinationPath(`./components/${component}/`));
+				this.fs.copy(this.templatePath(`./lib/components/${component}/`), this.destinationPath(`./components/${component}/`));
 			});
 		};
 
