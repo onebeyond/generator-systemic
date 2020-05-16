@@ -44,7 +44,7 @@ describe('Systemic basic services with no extra components', () => {
 	it('should create a service with basic files', done => {
 		const targetComponents = [];
 		generateService(targetComponents, () => {
-			assert.file(['.dockerignore', '.eslintrc.json', '.gitignore', '.nvmrc', 'Dockerfile', 'index.js', 'package.json', 'README.md', 'system.js']);
+			assert.file(['.dockerignore', '.eslintrc.json', '.gitignore', '.nvmrc', 'Dockerfile', 'index.js', 'package.json', 'README.md', 'system.js', 'makefile']);
 			done();
 		});
 	});
