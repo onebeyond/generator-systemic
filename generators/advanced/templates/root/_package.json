@@ -56,6 +56,7 @@
     "swagger-endpoint-validator": "^2.0.2",
     "systemic": "^3.3.7",
     "systemic-express": "^1.1.1",
-    "systemic-domain-runner": "^1.1.0"
+    "systemic-domain-runner": "^1.1.0",
+    "systemic-mongodb": "^1.0.5"
   }
 }
