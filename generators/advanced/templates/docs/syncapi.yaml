@@ -34,6 +34,72 @@ paths:
               schema:
                 $ref: '#/components/schemas/Error'
 
+  /v1/message/{id}:
+    get:
+      tags:
+        - Api
+      description: Returns the message v1
+      operationId: messageV1
+      parameters:
+        - name: id
+          in: path
+          description: id of the message
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: message v1 response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MessageV1'
+        '404':
+          description: message v1 not found error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFoundError'
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /v2/message/{id}:
+    get:
+      tags:
+        - Api
+      description: Returns the message v2
+      operationId: messageV2
+      parameters:
+        - name: id
+          in: path
+          description: id of the message
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: message v2 response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MessageV2'
+        '404':
+          description: message v2 not found error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFoundError'
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
 components:
   schemas:
     EmptyManifest:
@@ -68,6 +134,46 @@ components:
               type: string
             commit:
               type: string
+
+    MessageV1:
+      type: object
+      required:
+        - id
+        - text
+      properties:
+        id:
+          type: string
+        text:
+          type: string
+
+    MessageV2:
+      type: object
+      required:
+        - id
+        - text
+        - receptionTimestamp
+      properties:
+        id:
+          type: string
+        text:
+          type: string
+        receptionTimestamp:
+          type: string
+          
+    NotFoundError:
+      type: object
+      required:
+        - code
+        - message
+        - extra
+      properties:
+        code:
+          type: integer
+          format: int32
+        message:
+          type: string
+        extra:
+          type: string
           
     Error:
       type: object

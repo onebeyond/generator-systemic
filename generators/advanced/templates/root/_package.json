@@ -47,6 +47,7 @@
     "chalk": "^4.0.0",
     "confabulous": "^1.7.0",
     "debug": "^4.1.1",
+    "error-handler-module": "^1.0.3",
     "hogan.js": "^3.0.2",
     "make-manifest": "^1.0.1",
     "optimist": "^0.6.1",
