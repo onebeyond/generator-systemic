@@ -22,9 +22,13 @@ describe('Systemic advanced services with extra components', () => {
 			assert.fileContent('config/default.js', /service/);
 			assert.fileContent('config/default.js', /transport: 'console'/);
 			assert.fileContent('config/default.js', /swaggerValidator/);
+			assert.fileContent('config/default.js', /mongodb/);
+			assert.fileContent('config/default.js', /store/);
+			assert.fileContent('config/default.js', /rabbitmq/);
 			assert.fileContent('config/local.js', /transport: 'console'/);
 			assert.noFileContent('config/prod.js', /logger/);
 			assert.fileContent('config/test.js', /transport: null/);
+			assert.fileContent('config/test.js', /rabbitmq/);
 			assert.fileContent('config/build.js', /transport: null/);
 			done();
 		});
@@ -37,14 +41,18 @@ describe('Systemic advanced services with extra components', () => {
 			assert.file(['components/config/confabulous.js', 'components/config/index.js']);
 			assert.file(['components/config/confabulous.js', 'components/config/index.js']);
 			assert.file(['components/logging/bunyan.js', 'components/logging/console.js', 'components/logging/index.js', 'components/logging/prepper.js']);
+			assert.file(['components/store/index.js', 'components/store/initStore.js']);
+			assert.file(['components/bus/index.js', 'components/bus/initBus.js']);
+			assert.file(['components/routes/index.js', 'components/routes/admin-routes.js', 'components/routes/v1/api-routes.js', 'components/routes/v2/api-routes.js']);
+			assert.file(['components/controller/index.js', 'components/controller/bus/initController.js', 'components/controller/api/v1/initController.js', 'components/controller/api/v2/initController.js']);
 			done();
 		});
 	});
 
-	it('should create a service with basic files', done => {
+	it('should create a service with files', done => {
 		const targetComponents = [];
 		generateService(targetComponents, () => {
-			assert.file(['.dockerignore', '.eslintrc.json', '.gitignore', '.nvmrc', 'Dockerfile', 'index.js', 'package.json', 'README.md', 'system.js', 'makefile']);
+			assert.file(['.dockerignore', '.eslintrc.json', '.gitignore', '.nvmrc', 'Dockerfile', 'index.js', 'package.json', 'README.md', 'system.js', 'makefile', 'docker-compose.yml']);
 			done();
 		});
 	});
