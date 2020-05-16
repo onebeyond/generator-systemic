@@ -1,14 +1,17 @@
 const expect = require('expect.js');
 const supertest = require('supertest');
 const system = require('../system');
+const sleepModule = require('./helpers/sleep');
 
 describe('Service Tests', () => {
 	let request;
+	let busComponent;
 	const sys = system();
 
 	before(async () => {
-		const { app } = await sys.start();
+		const { app, bus } = await sys.start();
 		request = supertest(app);
+		busComponent = bus;
 	});
 
 	after(() => sys.stop());
