@@ -19,6 +19,14 @@ cd my-service
 yo systemic
 ```
 
+Then generate your new project with extra components:
+
+```bash
+mkdir my-service
+cd my-service
+yo systemic:advanced
+```
+
 ## Getting To Know Yeoman
 
  * Yeoman has a heart of gold.
