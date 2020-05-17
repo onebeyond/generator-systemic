@@ -84,9 +84,13 @@ The service comes whit an easy and lean makefile that can be used as a base for 
 Starting the service means to start the system components and sub-components in the proper order. Something that the [index.js](index.js) and the [system.js](system.js) files are taking care of.
 
 
-`npm run start`
+```
+npm run start
+```
 
 # TEST
 The service comes with a simple tests framework already in place in the _/test_ folder.
 
-`npm run test`
+```
+npm run test
+```
