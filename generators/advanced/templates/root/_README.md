@@ -27,3 +27,6 @@
 # INFRASTRUCTURE
 - __mongo__: store
 - __rabbitmq__: message bus
+
+
+error-handler-module

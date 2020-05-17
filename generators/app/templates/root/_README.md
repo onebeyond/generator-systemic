@@ -48,7 +48,8 @@ The intesting bit is the fact that is stored in js objects and is definable per-
 
 E.G. __routes__ and __routes.admin__ [default configuration](config/default.js):
 ```js
-routes: {
+{
+    routes: {
 		admin: {
 			swaggerValidator: {
 				apiDocEndpoint: '/__/docs/api',
@@ -62,6 +63,7 @@ routes: {
 			},
 		},
     },
+}
 ```
 
 
