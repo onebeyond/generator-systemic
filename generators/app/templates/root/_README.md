@@ -46,7 +46,7 @@ The admin api sub-component in charge of exposing the `/__/manifest` endpoint.
 The configuration is scattered across different files and mixed according to the service run mode as said above.
 The intesting bit is the fact that is stored in js objects and is definable per-component and per-sub-component. 
 
-E.G. __routes__ and __routes.admin__ [default configuration](config/default.js):
+E.g. __routes__ and __routes.admin__ [default configuration](config/default.js):
 ```js
 {
     routes: {
