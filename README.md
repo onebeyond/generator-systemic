@@ -49,7 +49,8 @@ yo systemic
 Generate your new systemic project with extra components: a not so white canvas with a given business logic already in place to help you better understand how to handle components (and sub-components):
 - versioning.
 - workflows.
-- testing
+- testing.
+- systemic ecosystem npm handy modules (e.g. [systemic-rabbitmq](https://www.npmjs.com/package/systemic-rabbitmq) - [systemic-mongdb](https://www.npmjs.com/package/systemic-mongodb)).
 
 [More info](generators/advanced/templates/root/_README.md)
 
