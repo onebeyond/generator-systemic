@@ -12,7 +12,7 @@ Stored into the _/components_ folder. Each one of them comes with an __*index.js
 - __express__: express server component.
 - __config__: configuration manager component.
 - __routes__: express server routes component.
-    - __routes.admin__: admin routes sub-components.
+    - __routes.admin__: admin api routes sub-components.
 
 ### __app__
 The root component defining the service system.
