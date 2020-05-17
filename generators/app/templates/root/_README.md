@@ -38,7 +38,7 @@ The component in charge of mixing and set up the configuration defined into the 
 The component in charge of specifiyng the routes to be exposed by the express component.
 
 ### __routes.admin__
-The admin api sub-component in charge of exposing the `/__/manifest` endpoint
+The admin api sub-component in charge of exposing the `/__/manifest` endpoint.
 
 
 # CONFIG
@@ -70,15 +70,15 @@ E.G. __routes__ and __routes.admin__ [default configuration](config/default.js):
 # DOCS
 The _/docs_ folder holds the synchronous api documentation for the endpoints exposed by the __routes__ component.
 As defined in the above section the [_syncapi.yaml_](docs/syncapi.yaml) is used by the [swagger-endpoint-validator](https://www.npmjs.com/package/swagger-endpoint-validator) in order to:
-- validate the requests and responses
-- expose the swagger api documentation at the `/__/docs/api` endpoint
+- validate the requests and responses.
+- expose the swagger api documentation at the `/__/docs/api` endpoint.
 
 
 # DOCKER
-The service is dockerized and ready to be shipped thanks to the Dockerfile
+The service is dockerized and ready to be shipped thanks to the Dockerfile.
 
 # MAKE
-The service comes whit an easy and lean makefile that can be used as a base for any CI/CD tool that need to manage the service
+The service comes whit an easy and lean makefile that can be used as a base for any CI/CD tool that need to manage the service.
 
 # START
 Starting the service means to start the system components and sub-components in the proper order. Something that the [index.js](index.js) and the [system.js](system.js) files are taking care of.
@@ -87,6 +87,6 @@ Starting the service means to start the system components and sub-components in 
 `npm run start`
 
 # TEST
-The service comes with a simple tests framework already in place in the _/test_ folder
+The service comes with a simple tests framework already in place in the _/test_ folder.
 
 `npm run test`
