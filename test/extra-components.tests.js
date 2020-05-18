@@ -39,7 +39,6 @@ describe('Systemic advanced services with extra components', () => {
 		generateService(targetComponents, () => {
 			assert.file(['components/app/index.js']);
 			assert.file(['components/config/confabulous.js', 'components/config/index.js']);
-			assert.file(['components/config/confabulous.js', 'components/config/index.js']);
 			assert.file(['components/logging/bunyan.js', 'components/logging/console.js', 'components/logging/index.js', 'components/logging/prepper.js']);
 			assert.file(['components/store/index.js', 'components/store/initStore.js']);
 			assert.file(['components/bus/index.js', 'components/bus/initBus.js']);
