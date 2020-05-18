@@ -37,28 +37,51 @@ module.exports = class extends Generator {
 			name: 'email',
 			message: 'The service author contact email',
 			default: 'author@domain.com',
+		},
+		{
+			type: 'confirm',
+			name: 'extraComponents',
+			message: 'Would you like to have a showcase including extra components?',
+			default: false,
 		}];
 
 		return this.prompt(prompts).then(props => {
 			this.props = props;
 			this.props.components = ['app', 'config', 'logging', 'express', 'routes'];
+			if (this.props.extraComponents) {
+				this.props.components = [...this.props.components, 'bus', 'store', 'controller'];
+			}
 		});
 	}
 
 	writing() {
+		const extraComponentsFiles = ['_docker-compose.yml'];
+
 		const copyFiles = (from, to) => {
 			const configFiles = fs.readdirSync(path.join(templatesFolder, from));
 			configFiles.forEach(file => {
+				if (!this.props.extraComponents && extraComponentsFiles.includes(file)) return;
 				this.fs.copyTpl(this.templatePath(`./${from}/${file}`), this.destinationPath(`${to}/${file.replace(/^_/, '')}`), this.props);
 			});
 		};
 
 		const copyAppFiles = () => {
+			// tests
 			this.fs.copy(this.templatePath('./test/.eslintrc'), this.destinationPath('./test/.eslintrc'));
-			this.fs.copy(this.templatePath('./test/*'), this.destinationPath('./test/'));
+			this.fs.copyTpl(this.templatePath('./test/*'), this.destinationPath('./test/'), this.props);
+			if (this.props.extraComponents) {
+				this.fs.copy(this.templatePath('./test/helpers/*'), this.destinationPath('./test/helpers/'));
+			}
+
+			// components
 			this.props.components.forEach(component => {
-				this.fs.copy(this.templatePath(`./lib/components/${component}/*`), this.destinationPath(`./components/${component}/`));
+				this.fs.copyTpl(this.templatePath(`./lib/components/${component}/*`), this.destinationPath(`./components/${component}/`), this.props);
 			});
+			if (this.props.extraComponents) {
+				this.fs.copyTpl(this.templatePath('./lib/components/routes/v1/*'), this.destinationPath('./components/routes/v1/'), this.props);
+				this.fs.copyTpl(this.templatePath('./lib/components/routes/v2/*'), this.destinationPath('./components/routes/v2/'), this.props);
+				this.fs.copyTpl(this.templatePath('./lib/components/controller/'), this.destinationPath('./components/controller/'), this.props);
+			}
 		};
 
 		copyFiles('docs', 'docs');

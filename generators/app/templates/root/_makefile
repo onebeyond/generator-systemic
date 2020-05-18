@@ -3,6 +3,9 @@
 ensure-dependencies:
 	@echo "Ensuring docker is installed..."
 	@docker info
+	<%_ if (extraComponents) { -%>
+	@docker-compose version
+	<%_ } -%>
 
 brand:
 	@echo "Creating our <%= name %> manifest file..."

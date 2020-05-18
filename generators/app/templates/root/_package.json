@@ -10,8 +10,13 @@
   "scripts": {
     "local": "SERVICE_ENV=local node index.js",
     "start": "node index.js",
-    "test-ci": "SERVICE_ENV=test mocha --reporter mocha-junit-reporter",
-    "test": "SERVICE_ENV=test mocha --reporter spec './test/**/*.test.js'",
+    <%_ if (extraComponents) { -%>
+    "infra-up": "docker-compose -f docker-compose.yml up -d",
+    "infra-down": "docker-compose -f docker-compose.yml down",
+    "sleep": "node test/helpers/sleep.js 20000",  
+    <%_ } -%>
+    "test": "<% if (extraComponents) { %>npm run infra-up && npm run sleep && <% } %>SERVICE_ENV=test mocha --reporter spec './test/**/*.test.js'<% if (extraComponents) { %> && npm run infra-down<% } %>",
+    "test-ci": "<% if (extraComponents) { %>npm run infra-up && npm run sleep && <% } %>SERVICE_ENV=test mocha --reporter mocha-junit-reporter<% if (extraComponents) { %> && npm run infra-down<% } %>",
     "lint": "eslint .",
     "manifest": "node_modules/make-manifest/bin/make-manifest",
     "qa": "npm run lint && npm run test",
@@ -47,6 +52,9 @@
     "chalk": "^4.0.0",
     "confabulous": "^1.7.0",
     "debug": "^4.1.1",
+    <%_ if (extraComponents) { -%>
+    "error-handler-module": "^1.0.3",
+    <%_ } -%>
     "hogan.js": "^3.0.2",
     "make-manifest": "^1.0.1",
     "optimist": "^0.6.1",
@@ -56,6 +64,8 @@
     "swagger-endpoint-validator": "^2.0.2",
     "systemic": "^3.3.7",
     "systemic-express": "^1.1.1",
-    "systemic-domain-runner": "^1.1.0"
+    "systemic-domain-runner": "^1.1.0"<% if (extraComponents) { %>,
+    "systemic-mongodb": "^1.0.5",
+    "systemic-rabbitmq": "^1.0.1"<% } %>
   }
 }
