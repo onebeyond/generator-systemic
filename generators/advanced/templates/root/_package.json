@@ -20,7 +20,7 @@
     "qa": "npm run lint && npm run test",
     "precommit": "npm run lint",
     "prepush": "npm run test",
-    "postinstall": "node_modules/.bin/eslint . --fix"
+    "postinstall": "node_modules/.bin/eslint . --fix && npm i --package-lock-only"
   },
   "husky": {
     "hooks": {
