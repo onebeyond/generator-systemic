@@ -23,7 +23,13 @@ describe('Service Tests', () => {
 			expect(response.headers['content-type']).to.equal('application/json; charset=utf-8');
 		}));
 
-	it('checks the integration chain', async () => {
+	it('fails retrieving a message with a 404 not found', async () => {
+		const responseV1 = await request.get(`/v1/message/1`);
+		expect(responseV1.body.message).to.equal('Not found request error');
+		expect(responseV1.body.extra).to.equal('A message with the given id was not found');
+	});
+
+	it('checks the whole integration chain', async () => {
 		// publish message into bus
 		const message = { id: '1', text: 'Hello World!' };
 		await busComponent.publish('demo_exchange', message, 'some.routing.key');
