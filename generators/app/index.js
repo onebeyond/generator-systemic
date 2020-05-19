@@ -1,3 +1,4 @@
+/* eslint-disable no-param-reassign */
 
 const Generator = require('yeoman-generator');
 const chalk = require('chalk');
@@ -5,8 +6,6 @@ const yosay = require('yosay');
 const fs = require('fs');
 const path = require('path');
 
-
-const templatesFolder = path.join(__dirname, 'templates');
 
 module.exports = class extends Generator {
 	prompting() {
@@ -41,53 +40,73 @@ module.exports = class extends Generator {
 		{
 			type: 'confirm',
 			name: 'extraComponents',
-			message: 'Would you like to have a showcase including extra components?',
+			message: 'Would you like to have a showcase including extra components or a white canvas microservice ready for your business logic?',
 			default: false,
 		}];
 
 		return this.prompt(prompts).then(props => {
 			this.props = props;
-			this.props.components = ['app', 'config', 'logging', 'express', 'routes'];
-			if (this.props.extraComponents) {
-				this.props.components = [...this.props.components, 'bus', 'store', 'controller'];
+			this.props.filesToSkip = [
+				// test
+				'test/unit/sample.test.js',
+				'test/mocks/components/config.js',
+				'test/mocks/components/logger.js',
+				'test/mocks/components/metrics.js',
+			];
+
+			if (!this.props.extraComponents) {
+				this.props.filesToSkip = [
+					...this.props.filesToSkip,
+					// root
+					'root/_docker-compose.yml',
+					// test
+					'test/helpers/sleep.js',
+					// components
+					'lib/components/routes/v1/api-routes.js',
+					'lib/components/routes/v2/api-routes.js',
+					'lib/components/bus/index.js',
+					'lib/components/bus/initStore.js',
+					'lib/components/store/index.js',
+					'lib/components/store/initStore.js',
+					'lib/components/controller/index.js',
+					'lib/components/controller/bus/initController.js',
+					'lib/components/controller/api/v1/initController.js',
+					'lib/components/controller/api/v2/initController.js',
+				];
 			}
 		});
 	}
 
 	writing() {
-		const extraComponentsFiles = ['_docker-compose.yml'];
+		const getFiles = (dirPath, filesPaths = []) => {
+			const files = fs.readdirSync(dirPath);
+
+			files.forEach(file => {
+				if (fs.statSync(`${dirPath}/${file}`).isDirectory()) {
+					filesPaths = getFiles(`${dirPath}/${file}`, filesPaths);
+				} else {
+					filesPaths.push(path.join(dirPath, file));
+				}
+			});
+
+			return filesPaths;
+		};
 
 		const copyFiles = (from, to) => {
-			const configFiles = fs.readdirSync(path.join(templatesFolder, from));
-			configFiles.forEach(file => {
-				if (!this.props.extraComponents && extraComponentsFiles.includes(file)) return;
+			const templatesFolder = path.join(__dirname, 'templates', from);
+			const files = getFiles(templatesFolder).map(file => file.split(`${from}/`)[1]);
+
+			files.forEach(file => {
+				if (this.props.filesToSkip.includes(`${from}/${file}`)) return;
 				this.fs.copyTpl(this.templatePath(`./${from}/${file}`), this.destinationPath(`${to}/${file.replace(/^_/, '')}`), this.props);
 			});
 		};
 
-		const copyAppFiles = () => {
-			// tests
-			this.fs.copy(this.templatePath('./test/.eslintrc'), this.destinationPath('./test/.eslintrc'));
-			this.fs.copyTpl(this.templatePath('./test/*'), this.destinationPath('./test/'), this.props);
-			if (this.props.extraComponents) {
-				this.fs.copy(this.templatePath('./test/helpers/*'), this.destinationPath('./test/helpers/'));
-			}
-
-			// components
-			this.props.components.forEach(component => {
-				this.fs.copyTpl(this.templatePath(`./lib/components/${component}/*`), this.destinationPath(`./components/${component}/`), this.props);
-			});
-			if (this.props.extraComponents) {
-				this.fs.copyTpl(this.templatePath('./lib/components/routes/v1/*'), this.destinationPath('./components/routes/v1/'), this.props);
-				this.fs.copyTpl(this.templatePath('./lib/components/routes/v2/*'), this.destinationPath('./components/routes/v2/'), this.props);
-				this.fs.copyTpl(this.templatePath('./lib/components/controller/'), this.destinationPath('./components/controller/'), this.props);
-			}
-		};
-
+		copyFiles('root', '.');
 		copyFiles('docs', 'docs');
 		copyFiles('config', 'config');
-		copyFiles('root', '.');
-		copyAppFiles();
+		copyFiles('test', 'test');
+		copyFiles('lib/components', 'components');
 	}
 
 	install() {
