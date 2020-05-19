@@ -40,7 +40,7 @@ module.exports = class extends Generator {
 		{
 			type: 'confirm',
 			name: 'extraComponents',
-			message: 'Would you like to have a showcase including extra components or a white canvas microservice ready for your business logic?',
+			message: 'Would you like to have a showcase including extra components?',
 			default: false,
 		}];
 
