@@ -157,6 +157,7 @@ In order for the service to be up and running the related infrstructure must be 
 ```
 <%_ if (extraComponents) { -%>
 npm run infra-up
+npm run sleep // waits for the rabbitmq docker image to be running
 <%_ } -%>
 npm run start
 ```
