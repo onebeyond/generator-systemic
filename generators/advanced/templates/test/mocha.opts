@@ -1,4 +1,0 @@
---recursive
---require ./test/env.js
---timeout 20000
---exit
