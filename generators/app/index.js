@@ -25,6 +25,18 @@ module.exports = class extends Generator {
 			name: 'description',
 			message: 'A brief description',
 			default: '',
+		},
+		{
+			type: 'input',
+			name: 'author',
+			message: 'The service author',
+			default: 'author',
+		},
+		{
+			type: 'input',
+			name: 'email',
+			message: 'The service author contact email',
+			default: 'author@domain.com',
 		}];
 
 		return this.prompt(prompts).then(props => {
@@ -49,6 +61,7 @@ module.exports = class extends Generator {
 			});
 		};
 
+		copyFiles('docs', 'docs');
 		copyFiles('config', 'config');
 		copyFiles('root', '.');
 		copyAppFiles();

@@ -21,8 +21,7 @@ describe('Systemic basic services with no extra components', () => {
 			assert.file(['config/default.js', 'config/local.js', 'config/prod.js', 'config/test.js', 'config/build.js']);
 			assert.fileContent('config/default.js', /service/);
 			assert.fileContent('config/default.js', /transport: 'console'/);
-			assert.fileContent('config/default.js', /swaggerOptions/);
-			assert.fileContent('config/default.js', /swaggerDefinition/);
+			assert.fileContent('config/default.js', /swaggerValidator/);
 			assert.fileContent('config/local.js', /transport: 'console'/);
 			assert.noFileContent('config/prod.js', /logger/);
 			assert.fileContent('config/test.js', /transport: null/);
@@ -45,7 +44,7 @@ describe('Systemic basic services with no extra components', () => {
 	it('should create a service with basic files', done => {
 		const targetComponents = [];
 		generateService(targetComponents, () => {
-			assert.file(['.dockerignore', '.eslintrc.json', '.gitignore', '.nvmrc', 'Dockerfile', 'index.js', 'package.json', 'README.md', 'system.js']);
+			assert.file(['.dockerignore', '.eslintrc.json', '.gitignore', '.nvmrc', 'Dockerfile', 'index.js', 'package.json', 'README.md', 'system.js', 'makefile']);
 			done();
 		});
 	});
