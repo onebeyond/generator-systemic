@@ -5,12 +5,12 @@ const assert = require('yeoman-assert');
 describe('Systemic advanced services with extra components', () => {
 	const generateService = next => {
 		helpers.run(path.join(__dirname, '../generators/app'))
+			.withOptions({ 'extra-components': true })
 			.withPrompts({
 				name: 'test-service',
 				description: 'some description',
 				author: 'john doe',
 				email: 'john.doe@dead.com',
-				extraComponents: true,
 			})
 			.on('error', next)
 			.on('end', next);

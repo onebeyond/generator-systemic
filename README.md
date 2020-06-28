@@ -43,14 +43,14 @@ yo systemic
 ```
 
 ## White canvas VS extra components
-The last question prompted by the generator is: `Would you like to have a showcase including extra components?`
+There is an option that can be passed to the generator at execution time using the flag `--extra-components`. 
 
-### --> NO (default answer)
+### `--extra-components` flag NOT used
 Generates your new systemic project: a white canvas into which creating the components you do prefer according to your specifi business logic. 
 
 More info in the generated ReadMe.
 
-### --> YES
+### `--extra-components` flag used
 Generates your new systemic project with extra components: a not so white canvas with a given business logic already in place to help you better understand how to handle components (and sub-components):
 - versioning.
 - workflows.

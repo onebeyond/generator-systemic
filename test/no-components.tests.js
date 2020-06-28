@@ -10,7 +10,6 @@ describe('Systemic basic services with no extra components', () => {
 				description: 'some description',
 				author: 'john doe',
 				email: 'john.doe@dead.com',
-				extraComponents: false,
 			})
 			.on('error', next)
 			.on('end', next);
