@@ -17,6 +17,42 @@ module.exports = {
 			},
 		},
 	},
+	<%_ if (extraComponents) { -%>
+	mongodb: {
+		url: 'mongodb://localhost:27017/',
+		options: {
+			poolSize: 5,
+			useUnifiedTopology: true,
+		},
+	},
+	store: {
+		databaseName: 'mongodb',
+		collectionName: 'messages',
+	},
+	rabbitmq: {
+		defaults: {},
+		vhosts: {
+			vhost_name: {
+				connection: {
+					hostname: '127.0.0.1',
+					user: 'rabbitmq',
+					password: 'rabbitmq',
+				},
+				exchanges: [],
+				queues: [
+					'demo_queue',
+				],
+				bindings: [],
+				subscriptions: {
+					demo_subscription: {
+						queue: 'demo_queue',
+					},
+				},
+				publications: {},
+			},
+		},
+	},
+	<%_ } -%>
 	logger: {
 		transport: 'console',
 		include: [

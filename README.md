@@ -32,9 +32,7 @@ npm install -g generator-systemic
 
 # USAGE
 
-### Default
-
-Generate your new systemic project: a white canvas into which create the components you do prefer according to your specifi business logic.
+Generate your new systemic project: a white canvas into which creating the components you do prefer according to your specifi business logic.
 
 [More info](generators/app/templates/root/_README.md)
 
@@ -44,21 +42,22 @@ cd my-service
 yo systemic
 ```
 
-### Advanced
+## White canvas VS extra components
+The last question prompted by the generator is: `Would you like to have a showcase including extra components?`
 
-Generate your new systemic project with extra components: a not so white canvas with a given business logic already in place to help you better understand how to handle components (and sub-components):
+### --> NO (default answer)
+Generates your new systemic project: a white canvas into which creating the components you do prefer according to your specifi business logic. 
+
+More info in the generated ReadMe.
+
+### --> YES
+Generates your new systemic project with extra components: a not so white canvas with a given business logic already in place to help you better understand how to handle components (and sub-components):
 - versioning.
 - workflows.
 - testing.
 - systemic ecosystem npm handy modules (e.g. [systemic-rabbitmq](https://www.npmjs.com/package/systemic-rabbitmq) - [systemic-mongdb](https://www.npmjs.com/package/systemic-mongodb)).
 
-[More info](generators/advanced/templates/root/_README.md)
-
-```bash
-mkdir my-service
-cd my-service
-yo systemic:advanced
-```
+More info in the generated ReadMe.
 
 
 # LICENSE

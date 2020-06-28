@@ -1,23 +1,23 @@
-/* eslint-disable no-undef */
 const path = require('path');
 const helpers = require('yeoman-test');
 const assert = require('yeoman-assert');
 
 describe('Systemic advanced services with extra components', () => {
-	const generateService = (components, next) => {
-		helpers.run(path.join(__dirname, '../generators/advanced'))
+	const generateService = next => {
+		helpers.run(path.join(__dirname, '../generators/app'))
 			.withPrompts({
 				name: 'test-service',
 				description: 'some description',
-				components,
+				author: 'john doe',
+				email: 'john.doe@dead.com',
+				extraComponents: true,
 			})
 			.on('error', next)
 			.on('end', next);
 	};
 
 	it('should create a service with proper configuration', done => {
-		const targetComponents = [];
-		generateService(targetComponents, () => {
+		generateService(() => {
 			assert.file(['config/default.js', 'config/local.js', 'config/prod.js', 'config/test.js', 'config/build.js']);
 			assert.fileContent('config/default.js', /service/);
 			assert.fileContent('config/default.js', /transport: 'console'/);
@@ -35,8 +35,7 @@ describe('Systemic advanced services with extra components', () => {
 	});
 
 	it('should create a service with proper components folder', done => {
-		const targetComponents = [];
-		generateService(targetComponents, () => {
+		generateService(() => {
 			assert.file(['components/app/index.js']);
 			assert.file(['components/config/confabulous.js', 'components/config/index.js']);
 			assert.file(['components/logging/bunyan.js', 'components/logging/console.js', 'components/logging/index.js', 'components/logging/prepper.js']);
@@ -49,8 +48,7 @@ describe('Systemic advanced services with extra components', () => {
 	});
 
 	it('should create a service with files', done => {
-		const targetComponents = [];
-		generateService(targetComponents, () => {
+		generateService(() => {
 			assert.file(['.dockerignore', '.eslintrc.json', '.gitignore', '.nvmrc', 'Dockerfile', 'index.js', 'package.json', 'README.md', 'system.js', 'makefile', 'docker-compose.yml']);
 			done();
 		});
