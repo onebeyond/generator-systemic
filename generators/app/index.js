@@ -36,16 +36,12 @@ module.exports = class extends Generator {
 			name: 'email',
 			message: 'The service author contact email',
 			default: 'author@domain.com',
-		},
-		{
-			type: 'confirm',
-			name: 'extraComponents',
-			message: 'Would you like to have a showcase including extra components?',
-			default: false,
 		}];
 
 		return this.prompt(prompts).then(props => {
 			this.props = props;
+			this.props.extraComponents = !!this.options['extra-components'];
+
 			this.props.filesToSkip = [
 				// test
 				'test/unit/sample.test.js',
