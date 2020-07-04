@@ -61,7 +61,7 @@ module.exports = class extends Generator {
 					'lib/components/routes/v1/api-routes.js',
 					'lib/components/routes/v2/api-routes.js',
 					'lib/components/bus/index.js',
-					'lib/components/bus/initStore.js',
+					'lib/components/bus/initBus.js',
 					'lib/components/store/index.js',
 					'lib/components/store/initStore.js',
 					'lib/components/controller/index.js',
