@@ -40,7 +40,7 @@ module.exports = class extends Generator {
 
 		return this.prompt(prompts).then(props => {
 			this.props = props;
-			this.props.extraComponents = !!this.options['extra-components'];
+			this.props.showcase = !!this.options.showcase;
 
 			this.props.filesToSkip = [
 				// test
@@ -50,7 +50,7 @@ module.exports = class extends Generator {
 				'test/mocks/components/metrics.js',
 			];
 
-			if (!this.props.extraComponents) {
+			if (!this.props.showcase) {
 				this.props.filesToSkip = [
 					...this.props.filesToSkip,
 					// root

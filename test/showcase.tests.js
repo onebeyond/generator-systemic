@@ -2,10 +2,10 @@ const path = require('path');
 const helpers = require('yeoman-test');
 const assert = require('yeoman-assert');
 
-describe('Systemic advanced services with extra components', () => {
+describe('Systemic showcase service with extra components', () => {
 	const generateService = next => {
 		helpers.run(path.join(__dirname, '../generators/app'))
-			.withOptions({ 'extra-components': true })
+			.withOptions({ showcase: true })
 			.withPrompts({
 				name: 'test-service',
 				description: 'some description',

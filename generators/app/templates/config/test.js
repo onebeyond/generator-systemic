@@ -1,5 +1,5 @@
 module.exports = {
-	<%_ if (extraComponents) { -%>
+	<%_ if (showcase) { -%>
 	rabbitmq: {
 		defaults: {},
 		vhosts: {

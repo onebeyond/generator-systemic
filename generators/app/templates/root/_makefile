@@ -3,7 +3,7 @@
 ensure-dependencies:
 	@echo "Ensuring docker is installed..."
 	@docker info
-	<%_ if (extraComponents) { -%>
+	<%_ if (showcase) { -%>
 	@docker-compose version
 	<%_ } -%>
 

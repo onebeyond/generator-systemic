@@ -2,7 +2,7 @@
 
 <%= description %>
 
-<%_ if (extraComponents) { -%>
+<%_ if (showcase) { -%>
 ### Main bits
 - Separation of concerns using the [Hexagonal Architecture (Ports and Adapters)](https://en.wikipedia.org/wiki/Hexagonal_architecture_(software)) approach.
 - Components and sub-components single responsibility.
@@ -36,7 +36,7 @@ Stored into the _/components_ folder. Each one of them comes with an __*index.js
 - __config__: configuration manager component.
 - __routes__: express server routes component.
     - __routes.admin__: admin api routes sub-components.
-<%_ if (extraComponents) { -%>
+<%_ if (showcase) { -%>
 	- __routes.api.v1__: api v1 routes sub-components.
 	- __routes.api.v2__: api v2 routes sub-components.
 - __controller__: orchestrator of components, handles the core logic of the Hexagon Architecture.
@@ -73,7 +73,7 @@ The component in charge of specifiyng the routes to be exposed by the express co
 ### __routes.admin__
 The admin api sub-component in charge of exposing the `/__/manifest` endpoint.
 
-<%_ if (extraComponents) { -%>
+<%_ if (showcase) { -%>
 ### __routes.api.v1__
 The api v1 sub-component in charge of exposing the `/v1/message/{id}` endpoint. It is capable of dealing with the defualt http errors thanks to the module [error-handler-module](https://www.npmjs.com/package/error-handler-module) (e.g. 404 NOT_FOUND_ERROR).
 
@@ -126,7 +126,7 @@ E.g. __routes__ and __routes.admin__ [default configuration](config/default.js):
 }
 ```
 
-<%_ if (extraComponents) { -%>
+<%_ if (showcase) { -%>
 Note that the configuration varies according to the different run modes. Particularly the rabbitmq one for the systemic-rabbitmq component coming as an npm library:
 - __Default__: according the the business logic of our service the default config is needed only for the service to be subscribed to a given queue.
 - __Test__: in order to test the service business logic during the test phase is the very same service the one publishing the messages that is going to consume. More info in the test section.
@@ -141,7 +141,7 @@ As defined in the above section the [_syncapi.yaml_](docs/syncapi.yaml) is used 
 
 # DOCKER
 - [Dokcerfile](Dokcerfile): the service is dockerized and ready to be shipped thanks to the Dockerfile.
-<%_ if (extraComponents) { -%>
+<%_ if (showcase) { -%>
 - [docker-compose.yml](docker-compose.yml): the service comes with a docker compose file in order to manage the infrastructure needed by the service to be up and running (i.e. rabbitmq - mongodb)
 <%_ } -%>
 
@@ -150,12 +150,12 @@ The service comes whit an easy and lean makefile that can be used as a base for 
 
 # START
 Starting the service means to start the system components and sub-components in the proper order. Something that the [index.js](index.js) and the [system.js](system.js) files are taking care of.
-<%_ if (extraComponents) { -%>
+<%_ if (showcase) { -%>
 In order for the service to be up and running the related infrstructure must be in place.
 <%_ } -%>
 
 ```
-<%_ if (extraComponents) { -%>
+<%_ if (showcase) { -%>
 npm run infra-up
 npm run sleep // waits for the rabbitmq docker image to be running
 <%_ } -%>
@@ -165,7 +165,7 @@ npm run start
 # TEST
 The service comes with a simple tests framework already in place in the _/test_ folder.
 
-<%_ if (extraComponents) { -%>
+<%_ if (showcase) { -%>
 There is one test in charge of checking the whole integration chain that is almost and end to end test and does the following:
 1. publishes a message into the very same rabbitmq queue that the service itself is subscribed to.
 2. waits for the message to be received by the service and stored into the mongodb database.
@@ -184,14 +184,14 @@ Note: even if the rabbitmq docker container is up please check that the admin [i
 npm run test
 ```
 
-<%_ if (extraComponents) { -%>
+<%_ if (showcase) { -%>
 ### putting the infrastructure down with docker-compose
 ```
 npm run infra-down
 ```
 <%_ } -%>
 
-<%_ if (extraComponents) { -%>
+<%_ if (showcase) { -%>
 ### note about a nasty hack
 The rabbitmq docker container can be up thanks to docker compose but is not actually running until 20 seconds after it started, that is where the npm `sleep` script comes in handy.
 <%_ } -%>

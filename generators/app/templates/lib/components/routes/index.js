@@ -1,6 +1,6 @@
 const System = require('systemic');
 const adminRoutes = require('./admin-routes');
-<%_ if (extraComponents) { -%>
+<%_ if (showcase) { -%>
 const apiRoutesV1 = require('./v1/api-routes');
 const apiRoutesV2 = require('./v2/api-routes');
 <%_ } -%>
@@ -8,7 +8,7 @@ const apiRoutesV2 = require('./v2/api-routes');
 module.exports = new System({ name: 'routes' })
 	.add('routes.admin', adminRoutes())
 	.dependsOn('config', 'logger', 'app', 'middleware.prepper', 'manifest')
-	<%_ if (extraComponents) { -%>
+	<%_ if (showcase) { -%>
 	.add('routes.api.v1', apiRoutesV1())
 	.dependsOn('app', 'logger',
 		{

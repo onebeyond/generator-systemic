@@ -2,7 +2,7 @@ const path = require('path');
 const helpers = require('yeoman-test');
 const assert = require('yeoman-assert');
 
-describe('Systemic basic services with no extra components', () => {
+describe('Systemic basic service', () => {
 	const generateService = next => {
 		helpers.run(path.join(__dirname, '../generators/app'))
 			.withPrompts({

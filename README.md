@@ -42,15 +42,15 @@ cd my-service
 yo systemic
 ```
 
-## White canvas VS extra components
-There is an option that can be passed to the generator at execution time using the flag `--extra-components`. 
+## White canvas VS showcase
+There is an option that can be passed to the generator at execution time using the flag `--showcase`. 
 
-### `--extra-components` flag NOT used
-Generates your new systemic project: a white canvas into which creating the components you do prefer according to your specifi business logic. 
+### `--showcase` flag NOT used
+Generates your new systemic project: a white canvas into which creating the components you do prefer according to your specific business logic. 
 
 More info in the generated ReadMe.
 
-### `--extra-components` flag used
+### `--showcase` flag used
 Generates your new systemic project with extra components: a not so white canvas with a given business logic already in place to help you better understand how to handle components (and sub-components):
 - versioning.
 - workflows.

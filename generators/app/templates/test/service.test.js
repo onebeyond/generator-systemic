@@ -1,32 +1,32 @@
 const expect = require('expect.js');
 const system = require('../system');
 const supertest = require('supertest');
-<%_ if (extraComponents) { -%>
+<%_ if (showcase) { -%>
 const sleepModule = require('./helpers/sleep');
 const storeHelper = require('./helpers/store');
 <%_ } -%>
 
 describe('Service Tests', () => {
 	let request;
-	<%_ if (extraComponents) { -%>
+	<%_ if (showcase) { -%>
 	let busComponent;
 	<%_ } -%>
 	const sys = system();
 
 	before(async () => {
-		const { app<% if (extraComponents) { %>, bus, config, mongodb<% } %> } = await sys.start();
+		const { app<% if (showcase) { %>, bus, config, mongodb<% } %> } = await sys.start();
 		request = supertest(app);
-		<%_ if (extraComponents) { -%>
+		<%_ if (showcase) { -%>
 		busComponent = bus;
 		await storeHelper.start({ mongodb, config: config.store });
 		<%_ } -%>
 	});
 
-	<%_ if (!extraComponents) { -%>
+	<%_ if (!showcase) { -%>
 	after(() => sys.stop());
 	<%_ } -%>
 
-	<%_ if (extraComponents) { -%>
+	<%_ if (showcase) { -%>
 	after(async () => {
 		await storeHelper.emptyCollection();
 		await sys.stop();
@@ -41,7 +41,7 @@ describe('Service Tests', () => {
 				expect(response.headers['content-type']).to.equal('application/json; charset=utf-8');
 			}));
 	
-	<%_ if (extraComponents) { -%>
+	<%_ if (showcase) { -%>
 	it('fails retrieving a message with a 404 not found', async () => {
 		const responseV1 = await request.get(`/v1/message/1`);
 		expect(responseV1.body.message).to.equal('Not found request error');

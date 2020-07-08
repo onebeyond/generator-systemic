@@ -17,7 +17,7 @@ module.exports = {
 			},
 		},
 	},
-	<%_ if (extraComponents) { -%>
+	<%_ if (showcase) { -%>
 	mongodb: {
 		url: 'mongodb://localhost:27017/',
 		options: {
