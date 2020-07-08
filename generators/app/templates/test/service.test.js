@@ -3,6 +3,7 @@ const system = require('../system');
 const supertest = require('supertest');
 <%_ if (extraComponents) { -%>
 const sleepModule = require('./helpers/sleep');
+const storeHelper = require('./helpers/store');
 <%_ } -%>
 
 describe('Service Tests', () => {
@@ -13,14 +14,24 @@ describe('Service Tests', () => {
 	const sys = system();
 
 	before(async () => {
-		const { app<% if (extraComponents) { %>, bus<% } %> } = await sys.start();
+		const { app<% if (extraComponents) { %>, bus, config, mongodb<% } %> } = await sys.start();
 		request = supertest(app);
 		<%_ if (extraComponents) { -%>
 		busComponent = bus;
+		await storeHelper.start({ mongodb, config: config.store });
 		<%_ } -%>
 	});
 
+	<%_ if (!extraComponents) { -%>
 	after(() => sys.stop());
+	<%_ } -%>
+
+	<%_ if (extraComponents) { -%>
+	after(async () => {
+		await storeHelper.emptyCollection();
+		await sys.stop();
+	});
+	<%_ } -%>
 
 	it('returns manifest', () =>
 		request

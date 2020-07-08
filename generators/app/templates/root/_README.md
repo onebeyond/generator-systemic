@@ -171,11 +171,25 @@ There is one test in charge of checking the whole integration chain that is almo
 2. waits for the message to be received by the service and stored into the mongodb database.
 3. calls the `/v1/message/{id}` endpoint and checks the correctness of the response.
 3. calls the `/v2/message/{id}` endpoint and checks the correctness of the response.
+
+### getting the infrastructure up with docker-compose
+```
+npm run infra-up
+```
+Note: even if the rabbitmq docker container is up please check that the admin [interface](http://localhost:15672/) is running since it can take up to 30 seconds to be ready.
 <%_ } -%>
 
+### running the tests
 ```
 npm run test
 ```
+
+<%_ if (extraComponents) { -%>
+### putting the infrastructure down with docker-compose
+```
+npm run infra-down
+```
+<%_ } -%>
 
 <%_ if (extraComponents) { -%>
 ### note about a nasty hack

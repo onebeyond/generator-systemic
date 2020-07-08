@@ -57,6 +57,7 @@ module.exports = class extends Generator {
 					'root/_docker-compose.yml',
 					// test
 					'test/helpers/sleep.js',
+					'test/helpers/store.js',
 					// components
 					'lib/components/routes/v1/api-routes.js',
 					'lib/components/routes/v2/api-routes.js',

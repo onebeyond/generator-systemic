@@ -13,9 +13,9 @@
     <%_ if (extraComponents) { -%>
     "infra-up": "docker-compose -f docker-compose.yml up -d",
     "infra-down": "docker-compose -f docker-compose.yml down",
-    "sleep": "node test/helpers/sleep.js 20000",  
+    "sleep": "node test/helpers/sleep.js 30000",  
     <%_ } -%>
-    "test": "<% if (extraComponents) { %>npm run infra-up && npm run sleep && <% } %>SERVICE_ENV=test mocha --reporter spec './test/**/*.test.js'<% if (extraComponents) { %> && npm run infra-down<% } %>",
+    "test": "SERVICE_ENV=test mocha --reporter spec './test/**/*.test.js'",
     "test-ci": "<% if (extraComponents) { %>npm run infra-up && npm run sleep && <% } %>SERVICE_ENV=test mocha --reporter mocha-junit-reporter<% if (extraComponents) { %> && npm run infra-down<% } %>",
     "lint": "eslint .",
     "manifest": "node_modules/make-manifest/bin/make-manifest",
