@@ -10,14 +10,19 @@
   "scripts": {
     "local": "SERVICE_ENV=local node index.js",
     "start": "node index.js",
-    "test-ci": "SERVICE_ENV=test mocha --reporter mocha-junit-reporter",
+    <%_ if (showcase) { -%>
+    "infra-up": "docker-compose -f docker-compose.yml up -d",
+    "infra-down": "docker-compose -f docker-compose.yml down",
+    "sleep": "node test/helpers/sleep.js 30000",  
+    <%_ } -%>
     "test": "SERVICE_ENV=test mocha --reporter spec './test/**/*.test.js'",
+    "test-ci": "<% if (showcase) { %>npm run infra-up && npm run sleep && <% } %>SERVICE_ENV=test mocha --reporter mocha-junit-reporter<% if (showcase) { %> && npm run infra-down<% } %>",
     "lint": "eslint .",
     "manifest": "node_modules/make-manifest/bin/make-manifest",
     "qa": "npm run lint && npm run test",
     "precommit": "npm run lint",
     "prepush": "npm run test",
-    "postinstall": "node_modules/.bin/eslint . --fix"
+    "postinstall": "node_modules/.bin/eslint . --fix && npm i --package-lock-only"
   },
   "husky": {
     "hooks": {
@@ -47,6 +52,9 @@
     "chalk": "^4.0.0",
     "confabulous": "^1.7.0",
     "debug": "^4.1.1",
+    <%_ if (showcase) { -%>
+    "error-handler-module": "^1.0.3",
+    <%_ } -%>
     "hogan.js": "^3.0.2",
     "make-manifest": "^1.0.1",
     "optimist": "^0.6.1",
@@ -56,6 +64,8 @@
     "swagger-endpoint-validator": "^2.0.2",
     "systemic": "^3.3.7",
     "systemic-express": "^1.1.1",
-    "systemic-domain-runner": "^1.1.0"
+    "systemic-domain-runner": "^1.1.0"<% if (showcase) { %>,
+    "systemic-mongodb": "^1.0.5",
+    "systemic-rabbitmq": "^1.0.1"<% } %>
   }
 }
