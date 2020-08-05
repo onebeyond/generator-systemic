@@ -25,7 +25,8 @@ module.exports = () => {
 		const details = R.pluck(event, []);
 		const data = R.merge(event, {
 			displayTracer: R.has('tracer', event) ? event.tracer.substr(0, 6) : '|',
-			displayLevel: event.level.toUpperCase(),
+			displayLevel: event.level.toUpperCase().padStart(event.level.length + Math.floor((6 - event.level.length) / 2), ' ')
+				.padEnd(6, ' '),
 			details: Object.keys(details).length ? `\n ${JSON.stringify(details, null, 2)}` : '',
 			errorMessage:
 				event.error &&
