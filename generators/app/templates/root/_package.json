@@ -21,8 +21,7 @@
     "manifest": "node_modules/make-manifest/bin/make-manifest",
     "qa": "npm run lint && npm run test",
     "precommit": "npm run lint",
-    "prepush": "npm run test",
-    "postinstall": "node_modules/.bin/eslint . --fix && npm i --package-lock-only"
+    "prepush": "npm run test"
   },
   "husky": {
     "hooks": {
