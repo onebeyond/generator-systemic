@@ -1,4 +1,4 @@
-const helmet = require("helmet");
+const helmet = require('helmet');
 const bodyParser = require('body-parser');
 const validator = require('swagger-endpoint-validator');
 
