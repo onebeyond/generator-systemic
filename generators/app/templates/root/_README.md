@@ -68,7 +68,7 @@ The component in charge of mixing and set up the configuration defined into the 
 - prod
 
 ### __routes__
-The component in charge of specifiyng the routes to be exposed by the express component.
+The component in charge of specifiyng the routes to be exposed by the express component. Note that the the express endpoints are secured thanks to [helmet](https://helmetjs.github.io/).
 
 ### __routes.admin__
 The admin api sub-component in charge of exposing the `/__/manifest` endpoint.

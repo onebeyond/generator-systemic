@@ -54,6 +54,7 @@
     <%_ if (showcase) { -%>
     "error-handler-module": "^1.0.3",
     <%_ } -%>
+    "helmet": "^4.1.1",
     "hogan.js": "^3.0.2",
     "make-manifest": "^1.0.1",
     "optimist": "^0.6.1",
