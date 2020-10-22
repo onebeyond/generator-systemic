@@ -56,7 +56,7 @@
     <%_ } -%>
     "helmet": "^4.1.1",
     "hogan.js": "^3.0.2",
-    "make-manifest": "^1.0.1",
+    "make-manifest": "^1.0.2",
     "optimist": "^0.6.1",
     "optional": "^0.1.4",
     "prepper": "^1.2.0",
