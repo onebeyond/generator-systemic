@@ -35,7 +35,7 @@
     "chalk": "^3.0.0",
     "yeoman-generator": "^4.10.0",
     "yosay": "^2.0.2",
-    "snyk": "^1.319.0"
+    "snyk": "^1.425.4"
   },
   "devDependencies": {
     "eslint": "^6.7.1",
