@@ -21,7 +21,7 @@ describe('Systemic showcase service with extra components', () => {
 			assert.file(['config/default.js', 'config/local.js', 'config/prod.js', 'config/test.js', 'config/build.js']);
 			assert.fileContent('config/default.js', /service/);
 			assert.fileContent('config/default.js', /transport: 'console'/);
-			assert.fileContent('config/default.js', /swaggerValidator/);
+			assert.fileContent('config/default.js', /openAPIOptions/);
 			assert.fileContent('config/default.js', /mongodb/);
 			assert.fileContent('config/default.js', /store/);
 			assert.fileContent('config/default.js', /rabbitmq/);
