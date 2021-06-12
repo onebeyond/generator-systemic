@@ -1,3 +1,3 @@
 module.exports = {
-	logger: { transport: 'console' },
+  logger: { transport: 'console' },
 };
