@@ -1,6 +1,6 @@
 const expect = require('expect.js');
-const system = require('../system');
 const supertest = require('supertest');
+const system = require('../system');
 <%_ if (showcase) { -%>
 const sleepModule = require('./helpers/sleep');
 const storeHelper = require('./helpers/store');
