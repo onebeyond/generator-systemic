@@ -55,8 +55,7 @@
     "ramda": "^0.27.1",
     "systemic": "^3.3.9",
     "systemic-domain-runner": "^1.1.0",
-    "systemic-express": "^1.1.1"
-    "systemic-domain-runner": "^1.1.0"<% if (showcase) { %>,
+    "systemic-express": "^1.1.1"<% if (showcase) { %>,
     "systemic-mongodb": "^1.0.5",
     "systemic-rabbitmq": "^1.0.1"<% } %>
   }

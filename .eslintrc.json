@@ -11,7 +11,7 @@
 		"node": true
 	},
 	"rules": {
-		"indent": [2, "tab"],
+		"indent": 2,
 		"no-tabs": 0,
 		"max-len": 0,
 		"no-underscore-dangle": 0,
