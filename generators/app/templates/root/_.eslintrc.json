@@ -20,6 +20,7 @@
     "quotes": ["error", "single"],
     "linebreak-style": ["error", "unix"],
     "semi": ["error", "always"],
+    "object-curly-newline": ["error", { "consistent": true }],
     "no-use-before-define": [
       "error",
       {
