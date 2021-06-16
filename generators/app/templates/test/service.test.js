@@ -25,7 +25,6 @@ describe('Service Tests', () => {
   <%_ if (!showcase) { -%>
   after(() => sys.stop());
   <%_ } -%>
-
   <%_ if (showcase) { -%>
   after(async () => {
     await storeHelper.emptyCollection();
@@ -33,7 +32,7 @@ describe('Service Tests', () => {
   });
   <%_ } -%>
 
-  it('returns manifest', () =>
+  it('returns manifest', () => (
     request
       .get('/__/manifest')
       .expect(200)
@@ -44,8 +43,7 @@ describe('Service Tests', () => {
         expect(response.headers['x-dns-prefetch-control']).to.equal('off');
         expect(response.headers['x-content-type-options']).to.equal('nosniff');
         expect(response.headers['strict-transport-security']).to.equal('max-age=15552000; includeSubDomains');
-      }));
-  
+      })));
   <%_ if (showcase) { -%>
   it('fails retrieving a message with a 404 not found', async () => {
     const responseV1 = await request.get(`/v1/message/1`);
