@@ -22,7 +22,7 @@ module.exports = () => {
      * GET /v2/message/{id}
      * @description endpoint to retrieve a message
      * @summary summary
-     * @tag V1
+     * @tags V2
      * @param {string} id.path.required - message Id
      * @return {MessageV2} 200 - message payload
      * @return {Error} 404 - Error when there isn't a message
