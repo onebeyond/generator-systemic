@@ -100,7 +100,6 @@ module.exports = class extends Generator {
     };
 
     copyFiles('root', '.');
-    copyFiles('docs', 'docs');
     copyFiles('config', 'config');
     copyFiles('test', 'test');
     copyFiles('.husky', '.husky');
