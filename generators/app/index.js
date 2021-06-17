@@ -1,11 +1,9 @@
 /* eslint-disable no-param-reassign */
-
 const Generator = require('yeoman-generator');
 const chalk = require('chalk');
 const yosay = require('yosay');
 const fs = require('fs');
 const path = require('path');
-
 
 module.exports = class extends Generator {
   prompting() {
