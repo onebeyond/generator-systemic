@@ -4,6 +4,30 @@ const {
 
 module.exports = () => {
   const start = async ({ app, logger, controller }) => {
+    /**
+     * @typedef {object} MessageV2
+     * @property {string} id - message id
+     * @property {string} text - message text
+     * @property {string} receptionTimestamp
+     */
+
+    /**
+     * @typedef {object} Error
+     * @property {integer} code - error code - int32
+     * @property {message} message - error message
+     * @property {object} extra - error extra information
+     */
+
+    /**
+     * GET /v2/message/{id}
+     * @description endpoint to retrieve a message
+     * @summary summary
+     * @tag V1
+     * @param {string} id.path.required - message Id
+     * @return {MessageV2} 200 - message payload
+     * @return {Error} 404 - Error when there isn't a message
+     * @return {Error} 500 - internal server error
+     */
     app.get('/v2/message/:id', async (req, res, next) => {
       try {
         const { id } = req.params;

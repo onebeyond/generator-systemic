@@ -8,9 +8,13 @@ module.exports = {
       openAPIOptions: {
         info: {
           version: '1.0.0',
-          title: '<%= name %>',
+          title: 'OpenAPI <%= name %>',
           license: {
             name: 'MIT',
+          },
+          contact: {
+            name: '<%= name %> API Support',
+            email: '<%= email %>',
           },
         },
         security: {
