@@ -108,22 +108,31 @@ The intesting bit is the fact that is stored in js objects and is definable per-
 
 E.g. __routes__ and __routes.admin__ [default configuration](config/default.js):
 ```js
-{
-    routes: {
-		admin: {
-			swaggerValidator: {
-				apiDocEndpoint: '/__/docs/api',
-				validateRequests: true,
-				validateResponses: true,
-				validationEndpoint: '/test',
-				format: 'yaml',
-				yaml: {
-					file: './docs/syncapi.yaml',
-				},
-			},
-		},
+routes: {
+    admin: {
+        openAPIOptions: {
+            info: {
+                version: '1.0.0',
+                title: 'OpenAPI <%= name %>',
+                license: {
+                    name: 'MIT',
+                },
+                contact: {
+                    name: '<%= name %> API Support',
+                    email: '<%= email %>',
+                },
+            },
+            security: {
+                BasicAuth: {
+                    type: 'http',
+                    scheme: 'basic',
+                },
+            },
+            baseDir: process.cwd(),
+            filesPattern: './**/*.js',
+        } ,
     },
-}
+},
 ```
 
 <%_ if (showcase) { -%>
@@ -133,10 +142,7 @@ Note that the configuration varies according to the different run modes. Particu
 <%_ } -%>
 
 # DOCS
-The _/docs_ folder holds the synchronous api documentation for the endpoints exposed by the __routes__ component.
-As defined in the above section the [_syncapi.yaml_](docs/syncapi.yaml) is used by the [swagger-endpoint-validator](https://www.npmjs.com/package/swagger-endpoint-validator) in order to:
-- validate the requests and responses.
-- expose the swagger api documentation at the `/__/docs/api` endpoint.
+The _components/routes/spec-routes.js_ file holds the synchronous api documentation for the endpoints defined into the __routes__ component. The swagger api documentation is exposed at the `/__/docs/api` endpoint.
 
 
 # DOCKER
