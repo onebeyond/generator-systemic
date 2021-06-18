@@ -24,7 +24,6 @@ module.exports = {
           },
         },
         baseDir: process.cwd(),
-        // Glob pattern to find your jsdoc files (multiple patterns can be added in an array)
         filesPattern: './**/*.js',
       },
     },

@@ -15,7 +15,8 @@ module.exports = () => {
      * GET /__/manifest
      * @summary Endpoint to retrieve the manifest info
      * @tags Admin
-     * @return {object} 200 - success response - application/json
+     * @return {Manifest} 200 - Successful response
+     * @return {Error} 500 - Internal Server error
      */
     app.get('/__/manifest', (req, res) => res.json(manifest));
 
