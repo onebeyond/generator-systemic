@@ -1,6 +1,6 @@
 {
-  "name": "@jgleal/generator-systemic",
-  "version": "2.3.2",
+  "name": "@jgleal/fake-generator-systemic",
+  "version": "0.0.1",
   "description": "A generator for a systemic microservice",
   "homepage": "https://github.com/guidesmiths/generator-systemic",
   "author": {
