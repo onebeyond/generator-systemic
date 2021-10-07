@@ -1,5 +1,5 @@
 {
-  "name": "generator-systemic",
+  "name": "@jgleal/generator-systemic",
   "version": "2.3.2",
   "description": "A generator for a systemic microservice",
   "homepage": "https://github.com/guidesmiths/generator-systemic",
