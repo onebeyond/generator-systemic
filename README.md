@@ -1,5 +1,5 @@
-[![CI](https://github.com/jgleal/generator-systemic/actions/workflows/ci.yml/badge.svg)](https://github.com/jgleal/generator-systemic/actions/workflows/ci.yml)
-[![CD](https://github.com/jgleal/generator-systemic/actions/workflows/cd.yml/badge.svg)](https://github.com/jgleal/generator-systemic/actions/workflows/cd.yml)
+[![CI](https://github.com/guidesmiths/generator-systemic/actions/workflows/ci.yml/badge.svg)](https://github.com/guidesmiths/generator-systemic/actions/workflows/ci.yml)
+[![CD](https://github.com/guidesmiths/generator-systemic/actions/workflows/cd.yml/badge.svg)](https://github.com/guidesmiths/generator-systemic/actions/workflows/cd.yml)
 
 # GENERATOR-SYSTEMIC
 
