@@ -9,8 +9,8 @@
   },
   "scripts": {
     "test": "mocha --reporter spec './test/**/*.tests.js'",
-    "lint": "eslint .",
-    "lint:fix": "eslint --fix .",
+    "lint": "eslint . --ext .js --config .eslintrc.json --ignore-path .eslintignore --cache",
+    "lint:fix": "eslint --fix --ext .js .",
     "snyk-protect": "snyk protect",
     "prepare": "npm run snyk-protect"
   },
@@ -38,11 +38,16 @@
     "yosay": "^2.0.2"
   },
   "devDependencies": {
-    "eslint": "^6.8.0",
-    "eslint-config-airbnb-base": "^14.2.1",
-    "eslint-plugin-import": "^2.23.4",
-    "eslint-plugin-mocha": "^6.3.0",
-    "husky": "^3.1.0",
+    "@commitlint/cli": "^17.1.2",
+    "@commitlint/config-conventional": "^17.1.0",
+    "eslint": "^8.24.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-config-standard": "^17.0.0",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-mocha": "^10.1.0",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^6.0.1",
+    "husky": "^8.0.1",
     "mocha": "^6.2.3",
     "require-all": "^3.0.0",
     "yeoman-assert": "^3.1.1",

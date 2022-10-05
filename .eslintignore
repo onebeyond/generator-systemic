@@ -1,2 +1,6 @@
 coverage/
 generators/app/templates/
+.idea
+.vscode
+node_modules
+test

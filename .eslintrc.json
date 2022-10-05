@@ -3,12 +3,14 @@
   "parserOptions": {
     "sourceType": "module",
     "allowImportExportEverywhere": false,
-    "ecmaVersion": 2018
+    "ecmaVersion": 13
   },
   "env": {
     "mocha": true,
-    "es6": true,
-    "node": true
+    "node": true,
+    "browser": true,
+    "commonjs": true,
+    "es2022": true
   },
   "rules": {
     "indent": 2,
