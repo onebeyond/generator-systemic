@@ -55,6 +55,6 @@
     }
   },
   "repository": "GuideSmiths Ltd/generator-systemic",
-  "license": "ISC",
+  "license": "MIT",
   "snyk": true
 }

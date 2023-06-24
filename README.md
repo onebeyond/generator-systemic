@@ -73,4 +73,4 @@ Consider following these guidelines if you want to contribute:
 
 # LICENSE
 
-ISC © [Guidesmiths Ltd]()
+MIT © [Guidesmiths Ltd](LICENSE)
