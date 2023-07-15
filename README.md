@@ -1,5 +1,7 @@
 [![CI](https://github.com/guidesmiths/generator-systemic/actions/workflows/ci.yml/badge.svg)](https://github.com/guidesmiths/generator-systemic/actions/workflows/ci.yml)
 [![CD](https://github.com/guidesmiths/generator-systemic/actions/workflows/cd.yml/badge.svg)](https://github.com/guidesmiths/generator-systemic/actions/workflows/cd.yml)
+[![Maintainability](https://api.codeclimate.com/v1/badges/357d68163ad88770f74a/maintainability)](https://codeclimate.com/github/onebeyond/generator-systemic/maintainability)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/357d68163ad88770f74a/test_coverage)](https://codeclimate.com/github/onebeyond/generator-systemic/test_coverage)
 
 # GENERATOR-SYSTEMIC
 
